@@ -10,10 +10,10 @@ structures rather than silently interpreting them.
 
 The state order is `MKKK, MKKK_P, MKK, MKK_P, MKK_PP, MAPK, MAPK_P, MAPK_PP`.
 Initial values are `90,10,280,10,10,280,10,10`; layer totals are 100, 300 and 300.
-Let (a,a_p,b,b_p,b_{pp},c,c_p,c_{pp}) denote those eight concentrations.
+Let $`(a,a_p,b,b_p,b_{pp},c,c_p,c_{pp})`$ denote those eight concentrations.
 The ten rates, with the archived numerical constants, are:
 
-$$
+```math
 \begin{aligned}
 v_0&=\frac{2.5s\,a}{(1+(c_{pp}/K_i)^1)(10+a)}, &v_1&=\frac{0.25a_p}{8+a_p},\\
 v_2&=\frac{0.025a_pb}{15+b}, &v_3&=\frac{0.025a_pb_p}{15+b_p},\\
@@ -21,18 +21,22 @@ v_4&=\frac{0.75b_{pp}}{15+b_{pp}}, &v_5&=\frac{0.75b_p}{15+b_p},\\
 v_6&=\frac{0.025b_{pp}c}{15+c}, &v_7&=\frac{0.025b_{pp}c_p}{15+c_p},\\
 v_8&=\frac{0.5c_{pp}}{15+c_{pp}}, &v_9&=\frac{0.5c_p}{15+c_p}.
 \end{aligned}
-$$
+```
 
-`s` is a multiplier on the source parameter V1; the archived baseline has
-`s=1`, `Ki=9`. The compartment volume is fixed at one. The full derivative is
+$`s`$ is a multiplier on the source parameter `V1`; the archived baseline has
+$`s=1`$ and $`K_i=9`$. The compartment volume is fixed at one. The full derivative is
 the source stoichiometry matrix times these rates. For the independent reduced
-form, (a=100-a_p), (b=300-b_p-b_{pp}), (c=300-c_p-c_{pp}), and:
+form, $`a=100-a_p`$, $`b=300-b_p-b_{pp}`$, $`c=300-c_p-c_{pp}`$, and:
 
-$$
-\dot a_p=v_0-v_1,\quad
-\dot b_p=v_2-v_3-v_5+v_4,\quad \dot b_{pp}=v_3-v_4,\quad
-\dot c_p=v_6-v_7+v_8-v_9,\quad \dot c_{pp}=v_7-v_8.
-$$
+```math
+\begin{aligned}
+\dot a_p&=v_0-v_1,\\
+\dot b_p&=v_2-v_3-v_5+v_4,\\
+\dot b_{pp}&=v_3-v_4,\\
+\dot c_p&=v_6-v_7+v_8-v_9,\\
+\dot c_{pp}&=v_7-v_8.
+\end{aligned}
+```
 
 The XML names substance units as nanomoles and uses a unit-sized compartment;
 many rate-parameter units are not separately annotated. We label axes with
@@ -64,7 +68,7 @@ initial values and totals remain fixed. We assign a uniform prior to these 49
 hypotheses. This discretization is neither a continuous parameter posterior
 nor a proof of structural identifiability.
 
-Each candidate is a single scalar: `MKK_PP/300` or `MAPK_PP/300`, at one of
+Each candidate is a single scalar: $`b_{pp}/300`$ or $`c_{pp}/300`$ (the `MKK_PP` or `MAPK_PP` readout), at one of
 36 times, 100,200,...,3600. Each seed from 0 through 19 draws a uniform grid
 truth with `default_rng(seed)`, then 72 independent Gaussian noise values with
 known standard deviation 0.04. The resulting observation is stored by candidate
@@ -73,7 +77,7 @@ so a virtual measurement can fall outside the noiseless fraction range.
 
 A likelihood scores observations under each hypothesis. Here it is independent Gaussian with the same known noise scale.
 Updates accumulate log likelihoods and normalize after subtracting their
-maximum. Entropy measures the dispersion of the hypothesis weights; its unit is the nat when natural logarithms are used. Uniform-prior entropy at budget zero is `log(49)` nats.
+maximum. Entropy measures the dispersion of the hypothesis weights; its unit is the nat when natural logarithms are used. Uniform-prior entropy at budget zero is $`\log(49)`$ nats.
 
 ## Sequential policies
 

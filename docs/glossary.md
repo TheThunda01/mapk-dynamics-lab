@@ -26,7 +26,7 @@ These definitions explain how terms are used in this project. A software check, 
 | Prior; likelihood; posterior; Bayesian update | The prior assigns weights before observations. The likelihood scores an observation under each hypothesis. The posterior combines them; an update revises the weights after a revealed observation. |
 | Uniform prior; conditional uncertainty | Uniform gives equal initial weight to each grid point. All reported uncertainty is conditional on that grid, fixed model and noise assumptions; it does not cover every possible mechanism. |
 | Gaussian noise; SD; variance; independence | Gaussian means normally distributed; SD is standard deviation, and variance is its square. Independent noise values do not inform one another in the assumed generator. |
-| Entropy; nat | Entropy `−sum(p*log(p))` describes spread of discrete weights. A nat is its unit when natural logarithms are used. Lower entropy need not mean more accurate biology. |
+| Entropy; nat | Entropy $`H=-\sum_i p_i\log p_i`$ describes spread of discrete weights. A nat is its unit when natural logarithms are used. Lower entropy need not mean more accurate biology. |
 | Posterior mean; true-point mass | A posterior mean averages predictions or parameters using the weights. True-point mass is the weight at the generating grid hypothesis; it is undefined when that point is absent. |
 | Policy; acquisition; candidate; budget | A policy chooses which permitted candidate observation to reveal. Acquisition is this selection step. The budget limits how many scalar observations may be revealed. |
 | Active learning; closed loop | The next observation depends on what has already been learned. Here this occurs only in simulation; no laboratory equipment is controlled. |
