@@ -104,6 +104,8 @@ Read the [worked use case and checks](docs/practical-use.md) before adapting it.
 
 ## Documentation
 
+The [21 October 2026 maintenance and scientific review](docs/review-2026-10-21.md) records the latest checks and their limits. Earlier review records remain available below.
+
 - [Project context](docs/project-context.md) — background, rationale and main themes
 - [Biology and concepts](docs/biology-and-concepts.md) — the cascade, feedback and identifiability
 - [Methods](docs/methods.md) — equations, design, metrics and numerical checks

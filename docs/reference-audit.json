@@ -29,6 +29,20 @@
       "citation": "Kholodenko BN. (2000). Negative feedback and ultrasensitivity can bring about oscillations in the mitogen-activated protein kinase cascades. European Journal of Biochemistry, 267(6), 1583–1588.",
       "alternate_urls": [
         "https://pubmed.ncbi.nlm.nih.gov/10712587/"
+      ],
+      "rechecks": [
+        {
+          "review_date": "2026-10-21",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/10712587/",
+          "access_level": "abstract",
+          "verified_fields": [
+            "article title",
+            "issue year",
+            "DOI"
+          ],
+          "finding": "Title, issue year and DOI agree with the cited item. The abstract was re-read for the limited claim used in this project.",
+          "limits": "No full-text reappraisal or new systematic search is claimed; earlier access records are preserved."
+        }
       ]
     },
     {
@@ -50,9 +64,23 @@
         "Abstract-level appraisal. This is a conditional modeling result, not a universal absence of biological oscillations or a quantified correction to this implementation."
       ],
       "corrections": [],
-      "citation": "Blüthgen N et al.. (2006). Effects of sequestration on signal transduction cascades. FEBS Journal, 273(5), 895–906.",
+      "citation": "Blüthgen N et al. (2006). Effects of sequestration on signal transduction cascades. FEBS Journal, 273(5), 895–906.",
       "alternate_urls": [
         "https://pubmed.ncbi.nlm.nih.gov/16478465/"
+      ],
+      "rechecks": [
+        {
+          "review_date": "2026-10-21",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/16478465/",
+          "access_level": "abstract",
+          "verified_fields": [
+            "article title",
+            "issue year",
+            "DOI"
+          ],
+          "finding": "Title, issue year and DOI agree with the cited item. The abstract was re-read for the limited claim used in this project.",
+          "limits": "No full-text reappraisal or new systematic search is claimed; earlier access records are preserved."
+        }
       ]
     },
     {
@@ -78,6 +106,20 @@
       "alternate_urls": [
         "https://pubmed.ncbi.nlm.nih.gov/41321992/",
         "https://pmc.ncbi.nlm.nih.gov/articles/PMC12661452/"
+      ],
+      "rechecks": [
+        {
+          "review_date": "2026-10-21",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/41321992/",
+          "access_level": "abstract",
+          "verified_fields": [
+            "article title",
+            "issue year",
+            "DOI"
+          ],
+          "finding": "Title, issue year and DOI agree with the cited item. The abstract was re-read for the limited claim used in this project.",
+          "limits": "No full-text reappraisal or new systematic search is claimed; earlier access records are preserved."
+        }
       ]
     },
     {
@@ -103,6 +145,20 @@
       "alternate_urls": [
         "https://pubmed.ncbi.nlm.nih.gov/39636894/",
         "https://pmc.ncbi.nlm.nih.gov/articles/PMC11620473/"
+      ],
+      "rechecks": [
+        {
+          "review_date": "2026-10-21",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/39636894/",
+          "access_level": "metadata_only",
+          "verified_fields": [
+            "article title",
+            "issue year",
+            "DOI"
+          ],
+          "finding": "Title, issue year and DOI agree with the cited item. This pass did not appraise the article body.",
+          "limits": "No full-text reappraisal or new systematic search is claimed; earlier access records are preserved."
+        }
       ]
     },
     {
@@ -128,6 +184,20 @@
       "alternate_urls": [
         "https://pubmed.ncbi.nlm.nih.gov/8816754/",
         "https://pmc.ncbi.nlm.nih.gov/articles/PMC38339/"
+      ],
+      "rechecks": [
+        {
+          "review_date": "2026-10-21",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/8816754/",
+          "access_level": "metadata_only",
+          "verified_fields": [
+            "article title",
+            "issue year",
+            "DOI"
+          ],
+          "finding": "Title, issue year and DOI agree with the cited item. This pass did not appraise the article body.",
+          "limits": "No full-text reappraisal or new systematic search is claimed; earlier access records are preserved."
+        }
       ]
     },
     {
@@ -153,6 +223,20 @@
       "alternate_urls": [
         "https://pubmed.ncbi.nlm.nih.gov/38184643/",
         "https://pmc.ncbi.nlm.nih.gov/articles/PMC10771435/"
+      ],
+      "rechecks": [
+        {
+          "review_date": "2026-10-21",
+          "source_url": "https://pubmed.ncbi.nlm.nih.gov/38184643/",
+          "access_level": "metadata_only",
+          "verified_fields": [
+            "article title",
+            "issue year",
+            "DOI"
+          ],
+          "finding": "Title, issue year and DOI agree with the cited item. This pass did not appraise the article body.",
+          "limits": "No full-text reappraisal or new systematic search is claimed; earlier access records are preserved."
+        }
       ]
     },
     {
@@ -175,6 +259,15 @@
       "corrections": [],
       "alternate_urls": [
         "https://www.ebi.ac.uk/biomodels/BIOMD0000000010"
+      ],
+      "rechecks": [
+        {
+          "review_date": "2026-10-21",
+          "source_url": "https://raw.githubusercontent.com/biomodels/BIOMD0000000010/d95a205b39b7e5bdc172a368534cda60c74ab420/BIOMD0000000010/BIOMD0000000010.xml",
+          "access_level": "official_documentation",
+          "finding": "Retrieved the exact 28,541-byte source XML again; SHA-256 f36baf246fc4f4548f23682d02d99c48bd8d3e2ab211901938cbc724e94c53b6 matches the pinned input. Equations, state counts and conserved totals remain the review basis, not an experimental validation.",
+          "limits": "Targeted source/version check, not independent validation of the project's scientific result."
+        }
       ]
     },
     {

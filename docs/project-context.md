@@ -30,7 +30,7 @@ off-grid scenario shows why a concentrated posterior does not guarantee that the
 right explanation was among the allowed hypotheses.
 
 The central themes are mechanistic modeling, reproducibility, conditional
-uncertainty and virtual experimental design. Recent
+uncertainty and virtual experimental design. The study by
 [Liu et al. (2025)](https://pubmed.ncbi.nlm.nih.gov/41321992/)
 supports investigating observation choice, but this repository uses its own
 simple variance heuristic. It does not reproduce that paper's algorithm.
