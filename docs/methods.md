@@ -62,6 +62,22 @@ parameter, timespan or model revision.
 
 ## Finite hypotheses and virtual observations
 
+Figure 1 is a map of the implemented data access. Table 1 describes the same boundary in text, including what the policy does not receive.
+
+![Data-access diagram for the simulated MAPK loop, with hidden truth routed only to the simulator and evaluator](figures/virtual-loop.svg)
+
+**Figure 1. The policy selects a query, not its answer.** Source: [experiment.py](../mapk_lab/experiment.py), especially `choose_candidate`, `run_policy` and `truth_metrics`. Solid arrows show the learning loop; dashed arrows show evaluation-only access. This is a software abstraction rather than a physical laboratory layout.
+
+**Table 1. Information available at each stage.**
+
+| Stage | Information it uses | Information or claim excluded |
+| --- | --- | --- |
+| Simulator | Hidden generating parameters and candidate-indexed noise | It does not use a policy's desired outcome. |
+| Posterior update | Revealed values, allowed predictions and the stated likelihood | It does not add an unmodeled “none of the above” hypothesis. |
+| Selection policy | Allowed predictions, current weights and selected candidate IDs | It does not receive the hidden curve or unrevealed outcomes. |
+| Evaluator | Posterior predictions and the hidden noiseless curve | Its errors are diagnostic outputs, not inputs to the policy. |
+| Comparison | Matched budgets and shared candidate noise within each seed | Computational seeds do not constitute independent biological replication. |
+
 The default grid is the Cartesian product of seven V1 multipliers evenly
 spaced from 0.7 to 1.3 and seven Ki values from 4.5 to 13.5. The other constants,
 initial values and totals remain fixed. We assign a uniform prior to these 49

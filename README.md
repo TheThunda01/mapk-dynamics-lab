@@ -21,6 +21,12 @@ The goal is to evaluate a decision rule under stated assumptions. This project
 does not collect laboratory data, reproduce an original-paper figure, or establish
 that the model captures a particular cell's behavior.
 
+Figure 1 shows what closes the implemented loop and which information is reserved for evaluation. Keeping those routes separate prevents the policy from choosing an observation using its hidden answer.
+
+![Virtual measurement-loop diagram separating hidden simulated truth, revealed observations, allowed model predictions, posterior updating, selection and evaluation](docs/figures/virtual-loop.svg)
+
+**Figure 1. Data access in the virtual measurement loop.** This is a software schematic, not laboratory automation. It follows [the implemented experiment](mapk_lab/experiment.py); the [methods table](docs/methods.md#finite-hypotheses-and-virtual-observations) gives the corresponding inputs and limits. The [figure builder](tools/build_documentation_figures.py) writes only documentation assets.
+
 ## What it does
 
 - Verifies an offline BioModels snapshot released under CC0, an upstream public-domain dedication, and translates its eight species and ten reaction rates.
@@ -51,7 +57,9 @@ experiment, so that run should not match the committed reference tables.
 ## Example results
 
 The committed [report](results/report.md) is computed from actual runs. At budget
-12, mean noiseless-curve root mean squared error (RMSE) across the 20 matched-model seeds was:
+12, mean noiseless-curve root mean squared error (RMSE) across the 20 matched-model seeds was as shown in Table 1.
+
+**Table 1. Mean final curve error in the matched-model simulation.**
 
 | Selection rule | Mean RMSE |
 |---|---:|
@@ -60,6 +68,8 @@ The committed [report](results/report.md) is computed from actual runs. At budge
 | Random schedule | 0.012998 |
 
 ![Simulated baseline dynamics and policy comparison](results/dynamics_and_design.png)
+
+**Figure 2. Simulated dynamics and the matched-model policy comparison.** Sources: [baseline trajectory](results/baseline_trajectory.csv) and [trial summaries](results/summary.csv). Error bars are descriptive standard errors across computational seeds, not independent biological replicates. The [full report](results/report.md) defines the evaluation scope.
 
 Both outputs are fractions of their kinase-layer totals. All policies share the
 same first two observations and, within a seed, the same candidate-indexed noise.
@@ -71,6 +81,12 @@ In the off-grid check, the variance-guided rule had mean final RMSE 0.010007 and
 entropy 0.820690 nats, a measure of weight dispersion using natural logarithms. The generating point is between allowed points but inside both parameter ranges; this tests finite-grid resolution, not out-of-range extrapolation. Concentrating weight among allowed hypotheses cannot make
 a missing generating point available. These examples support a bounded simulation
 comparison, not a general claim that this rule is best.
+
+Figure 3 places final prediction error next to posterior entropy for the variance-guided policy. It helps distinguish two questions: how concentrated the allowed hypotheses are, and how close their averaged prediction is to the hidden simulated curve.
+
+![Scatter plot of final curve error against posterior entropy for twenty grid-matched experiments and six noise repeats at one off-grid point](docs/figures/entropy-and-error.svg)
+
+**Figure 3. Concentrated weights and accurate predictions are different summaries.** Sources: budget-12 rows from [matched-model trials](results/trials.csv) and [off-grid trials](results/stress_trials.csv), with exact input hashes in the [figure manifest](docs/figures/figure-manifest.json). Each point is a computational run. The groups use different generating settings, so their contrast does not isolate a causal effect of grid mismatch. No fitted trend or significance test is shown.
 
 ## Practical use and limitations
 
@@ -108,3 +124,5 @@ Original code is [MIT licensed](LICENSE). The encoded model remains
 [CC0 with upstream attribution](DATA_LICENSE.md). No third-party application
 implementation was copied. Please include model and method citations when using
 the scientific ideas, and disclose changes to the hypothesis grid, noise or budget.
+
+Rebuild Figures 1 and 3 with `python tools/build_documentation_figures.py`. The builder reads committed CSV files and writes `docs/figures/`; it does not rerun the model or replace analysis outputs.

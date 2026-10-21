@@ -1,0 +1,17 @@
+{
+  "diagram_kind": "conceptual software data-access schematic",
+  "chart_selection": {
+    "policy": "variance_guided",
+    "budget": 12,
+    "grid_matched_rows": 20,
+    "off_grid_rows": 6
+  },
+  "source_sha256": {
+    "results/trials.csv": "36a5489f6150e5cb51df3bd6fee2780d1643ff25eb51abee28d721b480fbaeb4",
+    "results/stress_trials.csv": "b21600b0a429014dc4b79feecbe174d0ba6d79a5846dc95feb1c8951a66ee17d"
+  },
+  "output_sha256": {
+    "virtual-loop.svg": "ba48bdeccc6e4fd2ebf586243792e98a2e6665bd3aca219d30f181470edcd39f",
+    "entropy-and-error.svg": "c3aea3d9dfd2c33205748e6c5971c4ba534b50da91983e7f2d563c9b5fed2e7c"
+  }
+}
