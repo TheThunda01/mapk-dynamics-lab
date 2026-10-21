@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "package_version": "0.1.0",
+  "source": {
+    "accession": "BIOMD0000000010",
+    "source_commit": "d95a205b39b7e5bdc172a368534cda60c74ab420",
+    "retrieved": "2026-10-20",
+    "license": "CC0-1.0",
+    "files": [
+      {
+        "path": "model.xml",
+        "source_url": "https://raw.githubusercontent.com/biomodels/BIOMD0000000010/d95a205b39b7e5bdc172a368534cda60c74ab420/BIOMD0000000010/BIOMD0000000010.xml",
+        "sha256": "f36baf246fc4f4548f23682d02d99c48bd8d3e2ab211901938cbc724e94c53b6",
+        "bytes": 28541
+      },
+      {
+        "path": "LICENSE-CC0.txt",
+        "source_url": "https://raw.githubusercontent.com/biomodels/BIOMD0000000010/d95a205b39b7e5bdc172a368534cda60c74ab420/LICENSE.txt",
+        "sha256": "5537d4d10b76b81b6e8dfd8b644480a4b1efa332fbb0cdb61126c5be781ef7b4",
+        "bytes": 6554
+      },
+      {
+        "path": "UPSTREAM_README.md",
+        "source_url": "https://raw.githubusercontent.com/biomodels/BIOMD0000000010/d95a205b39b7e5bdc172a368534cda60c74ab420/README.md",
+        "sha256": "4089c8ad83b55334a6c493bc364d68844b7ce766289cf8c220ebdc3a2f7c864f",
+        "bytes": 3014
+      }
+    ]
+  },
+  "dependencies": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "pandas": "2.2.3",
+    "matplotlib": "3.10.8"
+  },
+  "configuration": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "grid_size": 7,
+    "sigma": 0.04,
+    "budgets": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      12
+    ],
+    "policies": [
+      "variance_guided",
+      "random",
+      "fixed"
+    ],
+    "common_initial_candidates": [
+      0,
+      1
+    ],
+    "truth_rule": "uniform integer on hypothesis IDs using default_rng(seed)",
+    "noise_rule": "same RNG after truth draw, iid normal by fixed candidate ID",
+    "random_policy_seed_rule": "10000 + seed",
+    "solver": "BDF",
+    "rtol": 1e-08,
+    "atol": 1e-10,
+    "likelihood": "independent Gaussian with known fixed sigma",
+    "prior": "uniform finite grid",
+    "acquisition": "maximum weighted variance of latent candidate mean; not exact information gain"
+  },
+  "stress_configuration": {
+    "scenario": "off_grid_truth",
+    "v1_scale": 1.05,
+    "ki": 9.75,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "sigma": 0.04,
+    "noise_seed_rule": "20000 + seed",
+    "random_policy_seed_rule": "30000 + seed"
+  },
+  "code_sha256": {
+    "mapk_lab/__init__.py": "9dca0d9718747ebdece2f6108d4477b24986c2227329c3aaacceacb6523b348b",
+    "mapk_lab/experiment.py": "9e701a7dc7e76cb24c3d417b14ab1fc3ade7fc7b20f6d35f57c93243b304df86",
+    "mapk_lab/model.py": "ea30496e083508a97465289273ad99157e65470b63d9aa5e60f9572b840e11e2",
+    "scripts/compare_results.py": "f91952b743d3861bef19d84434eb2bfec21f1dcfc162a7a9ad6c48fd9f553ec2",
+    "scripts/run_benchmark.py": "ede843afbcb8dd0b4191e0c899cba56672a29634ea768b7dec2326def4b61939",
+    "scripts/verify_results.py": "05f565faa0e29421df3a9e15f0c2b80bf58052b0c761e01186b4a5cfec3e2706"
+  },
+  "artifacts_sha256": {
+    "baseline_trajectory.csv": "71b9d9d04379430d4ea459343833772f0e8586ac9fb680b64e956341b0b98bee",
+    "candidate_predictions.csv": "931ced138afb48a6bf0e8ea36bbc5597bf213bff61c1f1f9b17bae9f380f89bc",
+    "candidates.csv": "e65694f2cf0f59aade0272f059a5c512aeae9dea34652d40f63ecb9640cfb54c",
+    "dynamics_and_design.png": "e78ea8b3d1574a89f52e8082aa5031e1efc15f29072429016a0819f69197bf60",
+    "evaluation_predictions.csv": "c769057f36f6a7c1a180124d9f6270ba3cc8dee0772c4a968bd5d81f505a611c",
+    "hypotheses.csv": "52e502f5c284a953983cc1a6cf52a67f344fd59dff54d25c590d21a441e836c3",
+    "paired_final_rmse.png": "a238af4624e51ce2d7caef18cf205db7fa32c571bb837507835341446eb0626e",
+    "posterior_weights.csv": "9b6e3d1dec727f2f33cf54500d6857af84b2ff913bca5545020942ab300630df",
+    "report.md": "59705cfa2f9bb67beddff062f1f59c58d78f7d6e02ff41abd16c8f8eb7eb51f1",
+    "selection_log.csv": "2321d7be6a92245094194a7537240fd7c723f241e853911cc3b9946afa3a0bc5",
+    "solver_checks.json": "7c2191d15347fedfbb4b5e0c14f67b63ea2babd9414b4d303e5f04ffd2bf0a26",
+    "stress_observations.csv": "f996960eab2ff2b1d3646fa6cc2c76c71baa892071956a1a2f96faeada1eba35",
+    "stress_posterior_weights.csv": "b06b869ea68829846b0869a29da677d11f75b839641874dd06b59a270fef3ff3",
+    "stress_selection_log.csv": "6e0edafefe288b85c1ae50aa417fb6276b30bd09239769c9e6bd02c4cf2a6265",
+    "stress_summary.csv": "40b478ceb2323e9b6270df308eb2b7434e9a6a96e55637f2b0fcc080224d79a1",
+    "stress_trials.csv": "b21600b0a429014dc4b79feecbe174d0ba6d79a5846dc95feb1c8951a66ee17d",
+    "stress_truth_predictions.csv": "f1e950d9028ab82370d4e16dcb319ffbaa4f047e523219bbc139b23b40080110",
+    "summary.csv": "982d738164b81eb6024c3a97311a76c697c40c7d35dd53c4c111aec0373b6f35",
+    "trials.csv": "36a5489f6150e5cb51df3bd6fee2780d1643ff25eb51abee28d721b480fbaeb4",
+    "virtual_observations.csv": "b5fc447152542e9e58d32f64ffb35698c5c59814a1453458723529bcae2606d5",
+    "virtual_truths.csv": "a5f454dd81c1cec5149b1ef7d47e651d6fc2ffe192bc56f33c94de494f0f2dc3"
+  },
+  "scope": "Synthetic matched-model hypotheses only; no real measurements or biological validation."
+}

@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "matched_trials": 360,
+  "stress_trials": 108,
+  "posterior_rows": 468,
+  "scope": "Checks pinned source and artifact hashes, key coverage, generated noise, policy replay, posterior likelihoods and metric arithmetic. Does not independently re-simulate exported trajectories, authenticate the manifest, or validate biology."
+}

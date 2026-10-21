@@ -1,0 +1,5 @@
+* text=auto eol=lf
+data/model.xml -text
+data/LICENSE-CC0.txt -text
+data/UPSTREAM_README.md -text
+*.png binary

@@ -1,0 +1,135 @@
+{
+  "search_date": "2026-10-20",
+  "scope": "Targeted contributor searches supporting MAPK model rationale, contrary evidence, recent virtual experimental-design methods, and computational reproducibility. Not a systematic review.",
+  "inclusion_criteria": [
+    "Primary study directly concerning the encoded cascade or a limitation of its model class",
+    "Recent molecular systems-biology design method relevant to virtual observation selection",
+    "Primary investigation of BioModels simulation reproducibility"
+  ],
+  "exclusion_criteria": [
+    "Review articles where a primary source is available",
+    "Alternative oscillation mechanism outside this fixed model",
+    "General input-signal design without the project's molecular cascade focus",
+    "Preprint superseded by the journal article"
+  ],
+  "searches": [
+    {
+      "source": "PubMed connector",
+      "query_parameters": {
+        "query": "Kholodenko[Author] AND MAPK AND oscillations",
+        "max_results": 10,
+        "max_abstract_chars": 2000,
+        "sort": "relevance",
+        "offset": 0
+      },
+      "total_count": 4,
+      "returned_count": 4,
+      "retrieved_ids": [
+        "20182652",
+        "10712587",
+        "16478465",
+        "16949102"
+      ],
+      "screened_count": 4,
+      "offset": 0,
+      "next_offset": null,
+      "has_more": false,
+      "warnings": []
+    },
+    {
+      "source": "PubMed connector",
+      "query_parameters": {
+        "query": "\"Bayesian experimental design\" AND (ODE OR \"dynamical systems\" OR \"systems biology\")",
+        "max_results": 5,
+        "max_abstract_chars": 2000,
+        "date_from": "2022/01/01",
+        "date_to": "2026/10/20",
+        "date_type": "publication",
+        "sort": "relevance",
+        "offset": 0
+      },
+      "total_count": 2,
+      "returned_count": 2,
+      "retrieved_ids": [
+        "41148999",
+        "41321992"
+      ],
+      "screened_count": 2,
+      "offset": 0,
+      "next_offset": null,
+      "has_more": false,
+      "warnings": []
+    },
+    {
+      "source": "PubMed connector",
+      "query_parameters": {
+        "query": "\"Curating models from BioModels\" AND \"OMEX\"",
+        "max_results": 5,
+        "max_abstract_chars": 2000,
+        "sort": "relevance",
+        "offset": 0
+      },
+      "total_count": 2,
+      "returned_count": 2,
+      "retrieved_ids": [
+        "39636894",
+        "38559029"
+      ],
+      "screened_count": 2,
+      "offset": 0,
+      "next_offset": null,
+      "has_more": false,
+      "warnings": [
+        "\"Curating models from BioModels\""
+      ]
+    }
+  ],
+  "screening": [
+    {
+      "pmid": "20182652",
+      "decision": "excluded",
+      "reason": "Review; retained primary cascade and sequestration studies instead."
+    },
+    {
+      "pmid": "10712587",
+      "decision": "included",
+      "reason": "Original primary MAPK feedback/ultrasensitivity model study; abstract inspected."
+    },
+    {
+      "pmid": "16478465",
+      "decision": "included",
+      "reason": "Primary contrary modeling evidence for explicit enzyme-target sequestration; abstract inspected."
+    },
+    {
+      "pmid": "16949102",
+      "decision": "excluded",
+      "reason": "Different competitive-inhibition/multisite mechanism; not implemented in the fixed cascade."
+    },
+    {
+      "pmid": "41148999",
+      "decision": "excluded",
+      "reason": "General Bayesian input-signal design; outside the selected molecular-cascade observation-choice implementation."
+    },
+    {
+      "pmid": "41321992",
+      "decision": "included",
+      "reason": "Recent primary active-learning/practical-identifiability study; abstract and introductory/methods PMC excerpt inspected, not full critical appraisal."
+    },
+    {
+      "pmid": "39636894",
+      "decision": "included",
+      "reason": "Journal article on BioModels simulation curation; publisher methods/results and citation metadata inspected."
+    },
+    {
+      "pmid": "38559029",
+      "decision": "excluded",
+      "reason": "Preprint duplicate of PMID39636894."
+    }
+  ],
+  "limits": [
+    "PubMed only for these searches; official BioModels GitHub and SciPy documentation verified separately.",
+    "All 8 returned records were screened at title/abstract level; full texts were not exhaustively appraised.",
+    "The E-ALPIPE PMC text was inspected only through the first 18,000 characters; no claim of reproducing its algorithm or study.",
+    "Targeted terms can miss relevant evidence; no broad or systematic-search completeness claim."
+  ]
+}

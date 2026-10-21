@@ -1,0 +1,332 @@
+{
+  "search_date": "2026-10-20",
+  "scope": "Bounded rapid review for a pinned MAPK feedback model, contrary mechanistic evidence, sequential virtual observation selection, and numerical reproducibility. Not a systematic review.",
+  "inclusion_criteria": [
+    "Primary study directly concerning the encoded cascade or a limitation of its model class",
+    "Recent molecular systems-biology design method relevant to virtual observation selection",
+    "Primary investigation of BioModels simulation reproducibility",
+    "Classic primary mechanistic or identifiability study useful for model feasibility/background."
+  ],
+  "exclusion_criteria": [
+    "Review articles where a primary source is available",
+    "Alternative oscillation mechanism outside this fixed model",
+    "General input-signal design without the project's molecular cascade focus",
+    "Preprint superseded by the journal article",
+    "Clinical or drug-response applications not addressing the model/design question."
+  ],
+  "searches": [
+    {
+      "source": "PubMed connector",
+      "query_parameters": {
+        "query": "Huang Ferrell ultrasensitivity mitogen activated protein kinase cascade",
+        "sort": "relevance",
+        "max_results": 3,
+        "max_abstract_chars": 6500
+      },
+      "total_count": 1,
+      "returned_count": 1,
+      "retrieved_ids": [
+        "8816754"
+      ],
+      "offset": 0,
+      "next_offset": null,
+      "has_more": false,
+      "pagination_limited": false,
+      "warnings": [],
+      "limit": "All returned records screened; title/abstract access only."
+    },
+    {
+      "source": "PubMed connector",
+      "query_parameters": {
+        "query": "(\"MAPK\"[Title/Abstract] OR \"mitogen-activated protein kinase\"[Title/Abstract]) AND (\"identifiability\"[Title/Abstract] OR \"experimental design\"[Title/Abstract])",
+        "date_from": "2022/01/01",
+        "date_to": "2026/10/20",
+        "date_type": "publication",
+        "sort": "publication_date",
+        "max_results": 8,
+        "max_abstract_chars": 6500
+      },
+      "total_count": 71,
+      "returned_count": 8,
+      "retrieved_ids": [
+        "42848270",
+        "42794845",
+        "42440358",
+        "42714610",
+        "42101296",
+        "42655778",
+        "42013404",
+        "41849229"
+      ],
+      "offset": 0,
+      "next_offset": 8,
+      "has_more": true,
+      "pagination_limited": false,
+      "warnings": [],
+      "limit": "Only first page screened; query was refined after off-topic results."
+    },
+    {
+      "source": "PubMed connector",
+      "query_parameters": {
+        "query": "MAPK[Title/Abstract] AND (identifiability[Title/Abstract] OR \"optimal experimental design\"[Title/Abstract])",
+        "date_from": "2022/01/01",
+        "date_to": "2026/10/20",
+        "date_type": "publication",
+        "sort": "publication_date",
+        "max_results": 6,
+        "max_abstract_chars": 6500
+      },
+      "total_count": 0,
+      "returned_count": 0,
+      "retrieved_ids": [],
+      "offset": 0,
+      "next_offset": null,
+      "has_more": false,
+      "pagination_limited": false,
+      "warnings": [
+        "No items found."
+      ],
+      "limit": "All returned records screened; title/abstract access only."
+    },
+    {
+      "source": "PubMed connector",
+      "query_parameters": {
+        "query": "Gevertz identifiability experimental design",
+        "date_from": "2022/01/01",
+        "date_to": "2026/10/20",
+        "date_type": "publication",
+        "sort": "relevance",
+        "max_results": 4,
+        "max_abstract_chars": 6000
+      },
+      "total_count": 2,
+      "returned_count": 2,
+      "retrieved_ids": [
+        "38184643",
+        "40809491"
+      ],
+      "offset": 0,
+      "next_offset": null,
+      "has_more": false,
+      "pagination_limited": false,
+      "warnings": [],
+      "limit": "All returned records screened; title/abstract access only."
+    },
+    {
+      "source": "PubMed connector",
+      "query_parameters": {
+        "query": "Kholodenko[Author] AND MAPK AND oscillations",
+        "max_results": 10,
+        "max_abstract_chars": 2000,
+        "sort": "relevance",
+        "offset": 0
+      },
+      "total_count": 4,
+      "returned_count": 4,
+      "retrieved_ids": [
+        "20182652",
+        "10712587",
+        "16478465",
+        "16949102"
+      ],
+      "screened_count": 4,
+      "offset": 0,
+      "next_offset": null,
+      "has_more": false,
+      "warnings": []
+    },
+    {
+      "source": "PubMed connector",
+      "query_parameters": {
+        "query": "\"Bayesian experimental design\" AND (ODE OR \"dynamical systems\" OR \"systems biology\")",
+        "max_results": 5,
+        "max_abstract_chars": 2000,
+        "date_from": "2022/01/01",
+        "date_to": "2026/10/20",
+        "date_type": "publication",
+        "sort": "relevance",
+        "offset": 0
+      },
+      "total_count": 2,
+      "returned_count": 2,
+      "retrieved_ids": [
+        "41148999",
+        "41321992"
+      ],
+      "screened_count": 2,
+      "offset": 0,
+      "next_offset": null,
+      "has_more": false,
+      "warnings": []
+    },
+    {
+      "source": "PubMed connector",
+      "query_parameters": {
+        "query": "\"Curating models from BioModels\" AND \"OMEX\"",
+        "max_results": 5,
+        "max_abstract_chars": 2000,
+        "sort": "relevance",
+        "offset": 0
+      },
+      "total_count": 2,
+      "returned_count": 2,
+      "retrieved_ids": [
+        "39636894",
+        "38559029"
+      ],
+      "screened_count": 2,
+      "offset": 0,
+      "next_offset": null,
+      "has_more": false,
+      "warnings": [
+        "\"Curating models from BioModels\""
+      ]
+    }
+  ],
+  "screening": [
+    {
+      "pmid": "8816754",
+      "title": "Ultrasensitivity in the mitogen-activated protein kinase cascade.",
+      "decision": "included",
+      "reason": "Classic primary MAPK ultrasensitivity study; larger associated model was considered but not selected.",
+      "role": "background/feasibility only"
+    },
+    {
+      "pmid": "42848270",
+      "title": "Kinetics and mechanisms in lipopolysaccharide-induced neuroinflammation: a framework for phytochemicals screening.",
+      "decision": "excluded",
+      "reason": "Biological/clinical application outside finite-hypothesis MAPK observation-design scope."
+    },
+    {
+      "pmid": "42794845",
+      "title": "Modulation of Antitumor Immunity and the Tumor Microenvironment by Scutellaria barbata D. Don: A Scoping Review and Network Pharmacology Analysis.",
+      "decision": "excluded",
+      "reason": "Biological/clinical application outside finite-hypothesis MAPK observation-design scope."
+    },
+    {
+      "pmid": "42440358",
+      "title": "Application of a Translational Research Platform to Unveil Efficacy Signals and Mechanisms of Resistance of FGFR Inhibitors in Multiple FGFR-Altered Solid Tumors.",
+      "decision": "excluded",
+      "reason": "Biological/clinical application outside finite-hypothesis MAPK observation-design scope."
+    },
+    {
+      "pmid": "42714610",
+      "title": "ACE2 and Parkinsonism\u2011related bone metabolic alterations: signaling pathways and hub gene analysis.",
+      "decision": "excluded",
+      "reason": "Biological/clinical application outside finite-hypothesis MAPK observation-design scope."
+    },
+    {
+      "pmid": "42101296",
+      "title": "Reprogramming of Cellular Plasticity via ETS and MYC Core-Regulatory Circuits during Response to MAPK Inhibition in BRAF-Mutant Colorectal Cancer.",
+      "decision": "excluded",
+      "reason": "Biological/clinical application outside finite-hypothesis MAPK observation-design scope."
+    },
+    {
+      "pmid": "42655778",
+      "title": "The Combination of Chinese Medicine Monomers Reduces 7S Globulin-Induced Damage to IPEC-J2 Cells In Vitro by Modulating NF-\u03baB/MAPK Pathway-Related Markers.",
+      "decision": "excluded",
+      "reason": "Biological/clinical application outside finite-hypothesis MAPK observation-design scope."
+    },
+    {
+      "pmid": "42013404",
+      "title": "Molecular Lineages of Sporadic Mismatch Repair-Deficient Colorectal Cancer.",
+      "decision": "excluded",
+      "reason": "Biological/clinical application outside finite-hypothesis MAPK observation-design scope."
+    },
+    {
+      "pmid": "41849229",
+      "title": "Distinct Malignant Cell States and Myeloid Glutamate Signaling Associated with Aggressive Pancreatic Neuroendocrine Tumors.",
+      "decision": "excluded",
+      "reason": "Biological/clinical application outside finite-hypothesis MAPK observation-design scope."
+    },
+    {
+      "pmid": "38184643",
+      "title": "Minimally sufficient experimental design using identifiability analysis.",
+      "decision": "included",
+      "reason": "Primary identifiability/design study; context for the design question, not a source of this algorithm or its performance.",
+      "role": "method context only"
+    },
+    {
+      "pmid": "40809491",
+      "title": "A practical guide for the generation of model-based virtual clinical trials.",
+      "decision": "excluded",
+      "reason": "General virtual-clinical-trial guide; outside the selected molecular model and observation-design benchmark."
+    },
+    {
+      "pmid": "20182652",
+      "decision": "excluded",
+      "reason": "Review; retained primary cascade and sequestration studies instead."
+    },
+    {
+      "pmid": "10712587",
+      "decision": "included",
+      "reason": "Original primary MAPK feedback/ultrasensitivity model study; abstract inspected."
+    },
+    {
+      "pmid": "16478465",
+      "decision": "included",
+      "reason": "Primary contrary modeling evidence for explicit enzyme-target sequestration; abstract inspected."
+    },
+    {
+      "pmid": "16949102",
+      "decision": "excluded",
+      "reason": "Different competitive-inhibition/multisite mechanism; not implemented in the fixed cascade."
+    },
+    {
+      "pmid": "41148999",
+      "decision": "excluded",
+      "reason": "General Bayesian input-signal design; outside the selected molecular-cascade observation-choice implementation."
+    },
+    {
+      "pmid": "41321992",
+      "decision": "included",
+      "reason": "Recent primary active-learning/practical-identifiability study; abstract and introductory/methods PMC excerpt inspected, not full critical appraisal."
+    },
+    {
+      "pmid": "39636894",
+      "decision": "included",
+      "reason": "Journal article on BioModels simulation curation; publisher methods/results and citation metadata inspected."
+    },
+    {
+      "pmid": "38559029",
+      "decision": "excluded",
+      "reason": "Preprint duplicate of PMID39636894."
+    }
+  ],
+  "direct_lookups": [
+    {
+      "source": "PubMed",
+      "pmids": [
+        "10712587",
+        "16478465",
+        "41321992"
+      ],
+      "role": "Retrieve known core identifiers provided by collaborator; duplicates of searched records, not additional unique screening records."
+    },
+    {
+      "source": "Official BioModels GitHub mirror",
+      "url": "https://github.com/biomodels/BIOMD0000000010/tree/d95a205b39b7e5bdc172a368534cda60c74ab420",
+      "role": "Model XML, README and CC0 license inspected and archived."
+    },
+    {
+      "source": "SciPy official documentation",
+      "url": "https://docs.scipy.org/doc/scipy-1.17.0/reference/generated/scipy.integrate.solve_ivp.html",
+      "role": "Numerical solver interfaces/error-control documentation inspected."
+    }
+  ],
+  "limits": [
+    "PubMed only for these searches; official BioModels GitHub and SciPy documentation verified separately.",
+    "All 8 returned records were screened at title/abstract level; full texts were not exhaustively appraised.",
+    "The E-ALPIPE PMC text was inspected only through the first 18,000 characters; no claim of reproducing its algorithm or study.",
+    "Targeted terms can miss relevant evidence; no broad or systematic-search completeness claim.",
+    "The broad MAPK query reported 71 hits; only the first 8 were retrieved and screened before a narrower query was used. Remaining 63 were not reviewed.",
+    "The canonical BioModels website returned an access error; official pinned GitHub mirror used instead."
+  ],
+  "screening_summary": {
+    "returned_records": 19,
+    "unique_records_screened": 19,
+    "included": 6,
+    "excluded": 13,
+    "included_scope": "4 direct sources + 2 feasibility/method-context sources; official model/docs are separately verified resources."
+  }
+}

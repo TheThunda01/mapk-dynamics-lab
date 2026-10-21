@@ -1,0 +1,9 @@
+{
+  "bdf_vs_tighter_bdf_max_abs": 4.876764231198649e-05,
+  "bdf_vs_radau_max_abs": 4.9585134775043116e-05,
+  "full_vs_reduced_radau_max_abs": 3.2834819307936414e-09,
+  "conservation_max_abs": 4.547473508864641e-13,
+  "minimum_concentration": 0.08157366377725951,
+  "tolerance_max_abs": 0.002,
+  "passed": true
+}

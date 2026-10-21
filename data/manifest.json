@@ -1,0 +1,26 @@
+{
+  "accession": "BIOMD0000000010",
+  "source_commit": "d95a205b39b7e5bdc172a368534cda60c74ab420",
+  "retrieved": "2026-10-20",
+  "license": "CC0-1.0",
+  "files": [
+    {
+      "path": "model.xml",
+      "source_url": "https://raw.githubusercontent.com/biomodels/BIOMD0000000010/d95a205b39b7e5bdc172a368534cda60c74ab420/BIOMD0000000010/BIOMD0000000010.xml",
+      "sha256": "f36baf246fc4f4548f23682d02d99c48bd8d3e2ab211901938cbc724e94c53b6",
+      "bytes": 28541
+    },
+    {
+      "path": "LICENSE-CC0.txt",
+      "source_url": "https://raw.githubusercontent.com/biomodels/BIOMD0000000010/d95a205b39b7e5bdc172a368534cda60c74ab420/LICENSE.txt",
+      "sha256": "5537d4d10b76b81b6e8dfd8b644480a4b1efa332fbb0cdb61126c5be781ef7b4",
+      "bytes": 6554
+    },
+    {
+      "path": "UPSTREAM_README.md",
+      "source_url": "https://raw.githubusercontent.com/biomodels/BIOMD0000000010/d95a205b39b7e5bdc172a368534cda60c74ab420/README.md",
+      "sha256": "4089c8ad83b55334a6c493bc364d68844b7ce766289cf8c220ebdc3a2f7c864f",
+      "bytes": 3014
+    }
+  ]
+}

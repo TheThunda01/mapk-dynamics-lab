@@ -1,2 +1,108 @@
-# mapk-dynamics-lab
-A curated MAPK signaling model with reproducible dynamics, Bayesian inference, and virtual experiment selection.
+# MAPK Dynamics Lab
+
+Which simulated observations help distinguish hypotheses about a signaling pathway?
+This repository turns a small, published MAPK model into an inspectable experiment:
+simulate a hidden parameter setting, choose a measurement, update the hypotheses,
+and repeat. It compares a variance-guided rule with random and fixed schedules.
+
+Start with the [project context](docs/project-context.md) for the motivation or
+[biology and concepts](docs/biology-and-concepts.md) for a fuller explanation.
+
+## Why this project
+
+A time course can look plausible while leaving several parameter explanations
+open. Choosing another observation is therefore part of the scientific problem.
+The [Kholodenko 2000 model](https://pubmed.ncbi.nlm.nih.gov/10712587/) is small enough
+to inspect and rich enough to show feedback-dependent dynamics. Its compactness
+also makes it possible to check the numerical implementation and compare repeated
+virtual experiments on an ordinary computer.
+
+The goal is to evaluate a decision rule under stated assumptions. This project
+does not collect laboratory data, reproduce an original-paper figure, or establish
+that the model captures a particular cell's behavior.
+
+## What it does
+
+- Verifies an offline CC0 BioModels snapshot and translates its eight species and ten reaction rates.
+- Checks conserved totals, nonnegative trajectories, source MathML rates, tighter solver tolerances, and a separately written five-state formulation.
+- Compares three policies across 20 matched-model seeds, with 49 parameter hypotheses, 72 available observations and a 12-observation budget.
+- Adds six off-grid noise repeats to expose the limits of a finite hypothesis set.
+- Exports observations, selections, full posterior weights, prediction tables and metrics, then independently replays the likelihood and acquisition calculations.
+
+## Quick start
+
+Use Python 3.11 or later, from the repository root:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python scripts/run_benchmark.py --out .reproduction
+python scripts/verify_results.py --results-dir .reproduction
+python scripts/compare_results.py results .reproduction
+python -m unittest discover -s tests -v
+```
+
+The benchmark needs no network after dependencies are installed. The default run
+takes under a minute in the development environment; runtime varies by machine.
+Use `--seeds 2 --grid-size 3` for a smaller exploration. Those flags change the
+experiment, so that run should not match the committed reference tables.
+
+## Example results
+
+The committed [report](results/report.md) is computed from actual runs. At budget
+12, mean noiseless-curve RMSE across the 20 matched-model seeds was:
+
+| Selection rule | Mean RMSE |
+|---|---:|
+| Variance guided | 0.002679 |
+| Fixed schedule | 0.010577 |
+| Random schedule | 0.012998 |
+
+![Simulated baseline dynamics and policy comparison](results/dynamics_and_design.png)
+
+Both outputs are fractions of their kinase-layer totals. All policies share the
+same first two observations and, within a seed, the same candidate-indexed noise.
+Budget zero is the uniform prior. The RMSE covers 81 times, including queried
+points and an unqueried late interval; it is not a purely held-out error estimate.
+See the [paired-seed plot](results/paired_final_rmse.png) and [full trials](results/trials.csv).
+
+In the off-grid check, the variance-guided rule had mean final RMSE 0.010007 and
+entropy 0.820690 nats. Concentrating weight among allowed hypotheses cannot make
+a missing generating point available. These examples support a bounded simulation
+comparison, not a general claim that this rule is best.
+
+## Practical use and limitations
+
+This is a starting point for testing virtual observation-selection logic and
+auditing a small ODE translation. The adaptive score is posterior-weighted
+variance of the latent predicted mean, **not exact expected information gain**.
+The Gaussian noise, constant totals, two varying parameters and uniform grid prior
+are choices made here. Most model parameters remain fixed.
+
+The compact model omits explicit kinase–substrate complexes. A
+[later primary study](https://pubmed.ncbi.nlm.nih.gov/16478465/) showed that
+sequestration can alter the ultrasensitivity and oscillations predicted by this
+model class. A numerically stable simulation is not experimental validation.
+Read the [worked use case and checks](docs/practical-use.md) before adapting it.
+
+## Documentation
+
+- [Project context](docs/project-context.md) — background, rationale and main themes
+- [Biology and concepts](docs/biology-and-concepts.md) — the cascade, feedback and identifiability
+- [Methods](docs/methods.md) — equations, design, metrics and numerical checks
+- [Practical use](docs/practical-use.md) — inputs, outputs, failures and a worked example
+- [Literature review](docs/literature-review.md), [search log](docs/search-log.json) and [references](docs/references.md)
+- [Provenance and related tools](docs/provenance-and-tools.md) — exact source, license and reuse boundaries
+
+## Development and reuse
+
+`mapk_lab/model.py` implements the model-specific translation;
+`mapk_lab/experiment.py` separates acquisition from hidden-truth evaluation.
+The verifier independently computes posterior likelihoods and metrics from CSVs.
+CI runs tests, reruns the full experiment and compares every CSV numerically.
+
+Original code is [MIT licensed](LICENSE). The encoded model remains
+[CC0 with upstream attribution](DATA_LICENSE.md). No third-party application
+implementation was copied. Please include model and method citations when using
+the scientific ideas, and disclose changes to the hypothesis grid, noise or budget.
