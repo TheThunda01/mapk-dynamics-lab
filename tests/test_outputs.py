@@ -2,6 +2,7 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
 
@@ -24,10 +25,10 @@ class OutputTests(unittest.TestCase):
     def test_hash_and_recomputed_metric_detect_tampering(self):
         with tempfile.TemporaryDirectory() as temp:
             directory = Path(temp)
-            # Symlinks keep immutable fixtures small; changed files are replaced below.
+            # Copy fixtures so tampering checks also run without symlink privileges.
             for path in (ROOT / "results").iterdir():
                 if path.is_file():
-                    (directory / path.name).symlink_to(path)
+                    shutil.copy2(path, directory / path.name)
             target = directory / "trials.csv"
             original = target.read_bytes()
             target.unlink()
@@ -48,7 +49,7 @@ class OutputTests(unittest.TestCase):
             directory = Path(temp)
             for path in (ROOT / "results").iterdir():
                 if path.is_file():
-                    (directory / path.name).symlink_to(path)
+                    shutil.copy2(path, directory / path.name)
             target = directory / "posterior_weights.csv"
             target.unlink()
             pd.read_csv(ROOT / "results/posterior_weights.csv").iloc[1:].to_csv(target, index=False)
@@ -64,7 +65,7 @@ class OutputTests(unittest.TestCase):
             directory = Path(temp)
             for path in (ROOT / "results").iterdir():
                 if path.is_file():
-                    (directory / path.name).symlink_to(path)
+                    shutil.copy2(path, directory / path.name)
             target = directory / "selection_log.csv"
             target.unlink()
             frame = pd.read_csv(ROOT / "results/selection_log.csv")
