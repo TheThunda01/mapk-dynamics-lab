@@ -3,7 +3,7 @@
 ## Where this fits
 
 Use this repository to inspect a compact model translation, teach finite-grid
-Bayesian updating, or compare a new virtual observation-selection rule against
+Bayesian updating (revising hypothesis weights using an assumed observation likelihood), or compare a new virtual observation-selection rule against
 declared baselines. It is also a reproducible example of connecting biological
 assumptions to an auditable numerical experiment. It is not a general SBML
 engine, a parameter-fitting service for arbitrary data, or a laboratory protocol.
@@ -12,8 +12,8 @@ engine, a parameter-fitting service for arbitrary data, or a laboratory protocol
 
 The required input is the unmodified, hash-verified source snapshot in `data/`.
 There is no external measurement file. The default configuration uses a 7×7
-grid, 20 seed-indexed simulated truths and known Gaussian noise SD 0.04.
-The CLI accepts `--data-dir`, `--out`, `--seeds` (integer 2–100) and `--grid-size`
+grid, 20 seed-indexed simulated truths and known Gaussian noise standard deviation (SD) 0.04.
+The command-line interface (CLI) accepts `--data-dir`, `--out`, `--seeds` (integer 2–100) and `--grid-size`
 (odd integer 3–11). The grid always spans the same ranges. The six-repeat off-grid
 stress case remains fixed. Outputs must not share the input data directory.
 
@@ -54,8 +54,9 @@ spent their budget. For a chosen seed/policy, the `h0` through `h48` columns in
 concentrated. The saved truth is used for evaluation only; giving it to a new
 selection policy would invalidate the comparison.
 
-Next inspect `stress_summary.csv`. Its generating setting is absent from the
-grid, although the noise model remains correctly specified. Lower posterior
+Next inspect `stress_summary.csv`. Its generating setting is between grid points, inside both parameter ranges,
+although the noise model remains correctly specified. This is discretization
+mismatch, not extrapolation outside the ranges. Lower posterior
 entropy cannot be read as assurance that the correct biological explanation
 has been found. This example is intentionally small; do not select a preferred
 policy using one favorable seed.
@@ -92,3 +93,5 @@ fixed schedules. A genuinely different mechanism, such as an explicit-complex
 model, needs its own licensed source and validation. Continuous inference or
 real-data fitting should follow a fresh identifiability and observation-model
 assessment, not simply add more parameters to this grid.
+
+For definitions, see the [glossary](glossary.md); for the rationale and limits of each material choice, see the [assumptions](assumptions.md).

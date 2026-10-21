@@ -1,0 +1,261 @@
+{
+  "review_date": "2026-10-20",
+  "scope": "Scientific and editorial recheck of authored documentation and its substantive sources. Verification performed 2026-10-21 UTC during the review dated 2026-10-20 in the user’s local date.",
+  "limits": [
+    "Targeted source verification, not a new comprehensive systematic literature review. Historical searches and results are preserved.",
+    "full_text means the relevant accessible body was inspected; limitations state partial extraction coverage where applicable.",
+    "Metadata-only entries support provenance or attribution only. Published findings do not validate this project’s own results."
+  ],
+  "references": [
+    {
+      "id": "kholodenko2000",
+      "source_type": "peer_reviewed_article",
+      "title": "Negative feedback and ultrasensitivity can bring about oscillations in the mitogen-activated protein kinase cascades",
+      "authors": "Kholodenko BN",
+      "year": 2000,
+      "url": "https://doi.org/10.1046/j.1432-1327.2000.01197.x",
+      "doi": "10.1046/j.1432-1327.2000.01197.x",
+      "pmid": "10712587",
+      "checked_on": "2026-10-21",
+      "access_level": "abstract",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Model-based possibility of oscillations from negative feedback combined with ultrasensitivity under specific assumptions."
+      ],
+      "limitations": [
+        "Abstract and bibliographic record inspected; exact equations are taken from the separately audited BioModels encoding. No original figure or real-cell behavior is independently validated."
+      ],
+      "corrections": [],
+      "citation": "Kholodenko BN. (2000). Negative feedback and ultrasensitivity can bring about oscillations in the mitogen-activated protein kinase cascades. European Journal of Biochemistry, 267(6), 1583–1588.",
+      "alternate_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/10712587/"
+      ]
+    },
+    {
+      "id": "bluthgen2006",
+      "source_type": "peer_reviewed_article",
+      "title": "Effects of sequestration on signal transduction cascades",
+      "authors": "Blüthgen N et al.",
+      "year": 2006,
+      "url": "https://doi.org/10.1111/j.1742-4658.2006.05105.x",
+      "doi": "10.1111/j.1742-4658.2006.05105.x",
+      "pmid": "16478465",
+      "checked_on": "2026-10-21",
+      "access_level": "abstract",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Explicit binding/sequestration can reduce sensitivity and abolish feedback-associated oscillations in studied cascade models."
+      ],
+      "limitations": [
+        "Abstract-level appraisal. This is a conditional modeling result, not a universal absence of biological oscillations or a quantified correction to this implementation."
+      ],
+      "corrections": [],
+      "citation": "Blüthgen N et al.. (2006). Effects of sequestration on signal transduction cascades. FEBS Journal, 273(5), 895–906.",
+      "alternate_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/16478465/"
+      ]
+    },
+    {
+      "id": "liu2025",
+      "source_type": "peer_reviewed_article",
+      "title": "Efficient data collection for establishing practical identifiability via active learning",
+      "authors": "Liu X, Wanika L, Chappell MJ, Branke J",
+      "year": 2025,
+      "url": "https://doi.org/10.1016/j.csbj.2025.10.058",
+      "doi": "10.1016/j.csbj.2025.10.058",
+      "pmid": "41321992",
+      "checked_on": "2026-10-21",
+      "access_level": "abstract",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Sequential observation choice can be investigated for practical identifiability; the reported E-ALPIPE demonstrations use synthetic experiments."
+      ],
+      "limitations": [
+        "This pass rechecked abstract and metadata. The historical review records partial introductory/method access, not full appraisal. This repository’s variance heuristic is not E-ALPIPE and does not inherit its performance."
+      ],
+      "corrections": [],
+      "citation": "Liu X, Wanika L, Chappell MJ, Branke J. (2025). Efficient data collection for establishing practical identifiability via active learning. Computational and Structural Biotechnology Journal, 27, 4992–5006.",
+      "alternate_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/41321992/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12661452/"
+      ]
+    },
+    {
+      "id": "xu2024",
+      "source_type": "peer_reviewed_article",
+      "title": "Curating models from BioModels: Developing a workflow for creating OMEX files",
+      "authors": "Xu J, Smith L",
+      "year": 2024,
+      "url": "https://doi.org/10.1371/journal.pone.0314875",
+      "doi": "10.1371/journal.pone.0314875",
+      "pmid": "39636894",
+      "checked_on": "2026-10-21",
+      "access_level": "abstract",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Reproducible simulation needs model files together with simulation settings."
+      ],
+      "limitations": [
+        "Abstract and metadata rechecked. Prior review records publisher methods/results appraisal; this pass does not claim a new complete appraisal or a replication of the workflow."
+      ],
+      "corrections": [],
+      "citation": "Xu J, Smith L. (2024). Curating models from BioModels: Developing a workflow for creating OMEX files. PLOS ONE, 19(12), e0314875.",
+      "alternate_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/39636894/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC11620473/"
+      ]
+    },
+    {
+      "id": "huang1996",
+      "source_type": "peer_reviewed_article",
+      "title": "Ultrasensitivity in the mitogen-activated protein kinase cascade",
+      "authors": "Huang CY, Ferrell JE Jr",
+      "year": 1996,
+      "url": "https://doi.org/10.1073/pnas.93.19.10078",
+      "doi": "10.1073/pnas.93.19.10078",
+      "pmid": "8816754",
+      "checked_on": "2026-10-21",
+      "access_level": "abstract",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Classic modeling and experimental background for cascade ultrasensitivity."
+      ],
+      "limitations": [
+        "Abstract-level appraisal; its experiment and larger model are not reproduced. It does not validate oscillations in the selected compact model."
+      ],
+      "corrections": [],
+      "citation": "Huang CY, Ferrell JE Jr. (1996). Ultrasensitivity in the mitogen-activated protein kinase cascade. Proceedings of the National Academy of Sciences USA, 93(19), 10078–10083.",
+      "alternate_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/8816754/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC38339/"
+      ]
+    },
+    {
+      "id": "gevertz2024",
+      "source_type": "peer_reviewed_article",
+      "title": "Minimally sufficient experimental design using identifiability analysis",
+      "authors": "Gevertz JL, Kareva I",
+      "year": 2024,
+      "url": "https://doi.org/10.1038/s41540-023-00325-1",
+      "doi": "10.1038/s41540-023-00325-1",
+      "pmid": "38184643",
+      "checked_on": "2026-10-21",
+      "access_level": "abstract",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Additional context linking experimental design and identifiability."
+      ],
+      "limitations": [
+        "Different model and biological application; abstract-level appraisal only. No method or performance result is transferred."
+      ],
+      "corrections": [],
+      "citation": "Gevertz JL, Kareva I. (2024). Minimally sufficient experimental design using identifiability analysis. npj Systems Biology and Applications, 10(1), 2.",
+      "alternate_urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/38184643/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10771435/"
+      ]
+    },
+    {
+      "id": "biomodels_model",
+      "source_type": "official_data_or_software",
+      "title": "BIOMD0000000010: Kholodenko2000 model encoding",
+      "authors": "BioModels",
+      "year": 2026,
+      "url": "https://github.com/biomodels/BIOMD0000000010/blob/d95a205b39b7e5bdc172a368534cda60c74ab420/BIOMD0000000010/BIOMD0000000010.xml",
+      "version": "d95a205b39b7e5bdc172a368534cda60c74ab420",
+      "checked_on": "2026-10-21",
+      "access_level": "official_documentation",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Eight species, ten reactions, constants, initial values, conserved layer totals and source formulas used by the translation."
+      ],
+      "limitations": [
+        "Official mirror inspected; canonical BioModels route was blocked in initial provenance review. Model annotations are not complete assay documentation, and this snapshot need not represent latest curation."
+      ],
+      "corrections": [],
+      "alternate_urls": [
+        "https://www.ebi.ac.uk/biomodels/BIOMD0000000010"
+      ]
+    },
+    {
+      "id": "biomodels_readme",
+      "source_type": "official_data_or_software",
+      "title": "BIOMD0000000010 upstream README",
+      "authors": "BioModels",
+      "year": 2026,
+      "url": "https://github.com/biomodels/BIOMD0000000010/blob/d95a205b39b7e5bdc172a368534cda60c74ab420/README.md",
+      "version": "d95a205b39b7e5bdc172a368534cda60c74ab420",
+      "checked_on": "2026-10-21",
+      "access_level": "official_documentation",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "Model attribution and the upstream release/dedication notice."
+      ],
+      "limitations": [
+        "Unmodified upstream text retained, including its abstract. Installation examples in that historical file are not this project’s instructions."
+      ],
+      "corrections": [],
+      "alternate_urls": []
+    },
+    {
+      "id": "biomodels_license",
+      "source_type": "official_data_or_software",
+      "title": "BIOMD0000000010 CC0 dedication",
+      "authors": "BioModels",
+      "year": 2026,
+      "url": "https://github.com/biomodels/BIOMD0000000010/blob/d95a205b39b7e5bdc172a368534cda60c74ab420/LICENSE.txt",
+      "version": "d95a205b39b7e5bdc172a368534cda60c74ab420",
+      "checked_on": "2026-10-21",
+      "access_level": "official_documentation",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "The encoded model is released under CC0 1.0 Universal."
+      ],
+      "limitations": [
+        "Dedication belongs to upstream model files, not a new dedication of all cited papers."
+      ],
+      "corrections": [],
+      "alternate_urls": []
+    },
+    {
+      "id": "scipy_solve_ivp",
+      "source_type": "official_data_or_software",
+      "title": "SciPy 1.17.0: solve_ivp",
+      "authors": "SciPy developers",
+      "year": 2026,
+      "url": "https://docs.scipy.org/doc/scipy-1.17.0/reference/generated/scipy.integrate.solve_ivp.html",
+      "version": "1.17.0",
+      "checked_on": "2026-10-21",
+      "access_level": "official_documentation",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "ODE initial-value integration, BDF/Radau methods, local error controls and status."
+      ],
+      "limitations": [
+        "Official API documentation, not a biological validation or a statistical justification for this dataset."
+      ],
+      "corrections": [],
+      "alternate_urls": []
+    },
+    {
+      "id": "omex_related",
+      "source_type": "official_data_or_software",
+      "title": "Developing a workflow for creating OMEX files: related repository",
+      "authors": "sys-bio / Xu and collaborators",
+      "year": 2026,
+      "url": "https://github.com/sys-bio/Developing-a-workflow-for-creating-OMEX-files",
+      "version": "Repository metadata accessed 2026-10-21",
+      "checked_on": "2026-10-21",
+      "access_level": "metadata_only",
+      "metadata_status": "verified",
+      "supported_claims": [
+        "The related repository exists as supplementary context for Xu and Smith (2024)."
+      ],
+      "limitations": [
+        "Repository metadata inspected; source code, license compatibility for copying and model-specific outputs were not audited. No code was incorporated."
+      ],
+      "corrections": [],
+      "alternate_urls": []
+    }
+  ]
+}

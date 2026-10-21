@@ -7,7 +7,7 @@ question is not only “which parameters fit?” It is also “which observation
 help separate the explanations we still consider plausible?”
 
 This project explores that question with a deliberately small mathematical
-system. The [Kholodenko MAPK model](https://pubmed.ncbi.nlm.nih.gov/10712587/)
+system. The [Kholodenko (2000) MAPK model](https://pubmed.ncbi.nlm.nih.gov/10712587/)
 represents a three-layer phosphorylation cascade with downstream negative
 feedback. It can generate changing, sometimes oscillatory, activity under its
 assumptions. The archived model is compact enough that a reader can follow its
@@ -31,13 +31,15 @@ right explanation was among the allowed hypotheses.
 
 The central themes are mechanistic modeling, reproducibility, conditional
 uncertainty and virtual experimental design. Recent
-[work on sequential data collection](https://pubmed.ncbi.nlm.nih.gov/41321992/)
+[Liu et al. (2025)](https://pubmed.ncbi.nlm.nih.gov/41321992/)
 supports investigating observation choice, but this repository uses its own
 simple variance heuristic. It does not reproduce that paper's algorithm.
 
 Nothing here establishes the behavior of real cells. The compact model omits
 complexes whose sequestration can change cascade dynamics, as demonstrated by
-[Blüthgen and colleagues](https://pubmed.ncbi.nlm.nih.gov/16478465/). The appropriate
+[Blüthgen et al. (2006)](https://pubmed.ncbi.nlm.nih.gov/16478465/). The appropriate
 next step is a broader computational stress test or a carefully specified
 comparison with suitable measurements, with the model and observation assumptions
 reassessed first. The current result is a transparent simulation benchmark.
+
+For definitions, see the [glossary](glossary.md); for the rationale and limits of each material choice, see the [assumptions](assumptions.md).

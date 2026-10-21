@@ -11,6 +11,8 @@ of all MAPK biology or all experimental-design algorithms.
 
 ## Search record
 
+The searches below are the preserved development record, not a claim that the literature search was rerun for the editorial review. The [21 October UTC source recheck](reference-audit.json) records current metadata, inspected passages and access limits. It does not add a new systematic-search yield.
+
 The machine-readable [search log](search-log.json) records seven actual PubMed
 queries, parameters, returned IDs, pagination limits and decisions. Together
 they returned 19 unique records, all screened at title/abstract level: six were
@@ -35,12 +37,12 @@ model files, license and numerical documentation were checked separately.
 
 | Source | Supported role | What it does not establish here |
 |---|---|---|
-| [Kholodenko 2000](https://pubmed.ncbi.nlm.nih.gov/10712587/) and the pinned BioModels encoding | A compact feedback cascade can produce oscillatory behavior under specified assumptions | That every MAPK pathway oscillates, or that this run reproduces an original figure |
-| [Blüthgen et al. 2006](https://pubmed.ncbi.nlm.nih.gov/16478465/) | Explicit sequestration can change sensitivity and remove feedback-associated oscillations in this model class | A quantitative correction for this particular implementation without implementing their extended model |
-| [Liu et al. 2025](https://pubmed.ncbi.nlm.nih.gov/41321992/) | Sequential data collection is a reasonable computational question for practical identifiability, demonstrated in synthetic settings | Performance of our simpler variance rule, or full-model identifiability |
-| [Xu and Smith 2024](https://pubmed.ncbi.nlm.nih.gov/39636894/) | Model encodings and simulation instructions need explicit reproducibility checks | Independent validation of our implementation or exact original-figure reproduction |
-| [Huang and Ferrell 1996](https://pubmed.ncbi.nlm.nih.gov/8816754/) | Classic background on cascade ultrasensitivity; an alternative larger model considered during feasibility | Evidence that the selected model is uniquely appropriate |
-| [Gevertz and Kareva 2024](https://pubmed.ncbi.nlm.nih.gov/38184643/) | Additional primary context connecting design and identifiability | A transfer of results from their different model to this MAPK benchmark |
+| [Kholodenko (2000)](https://pubmed.ncbi.nlm.nih.gov/10712587/) and the pinned BioModels encoding | A compact feedback cascade can produce oscillatory behavior under specified assumptions | That every MAPK pathway oscillates, or that this run reproduces an original figure |
+| [Blüthgen et al. (2006)](https://pubmed.ncbi.nlm.nih.gov/16478465/) | Explicit sequestration can change sensitivity and remove feedback-associated oscillations in this model class | A quantitative correction for this particular implementation without implementing their extended model |
+| [Liu et al. (2025)](https://pubmed.ncbi.nlm.nih.gov/41321992/) | Sequential data collection is a reasonable computational question for practical identifiability, demonstrated in synthetic settings | Performance of our simpler variance rule, or full-model identifiability |
+| [Xu and Smith (2024)](https://pubmed.ncbi.nlm.nih.gov/39636894/) | Model encodings and simulation instructions need explicit reproducibility checks | Independent validation of our implementation or exact original-figure reproduction |
+| [Huang and Ferrell (1996)](https://pubmed.ncbi.nlm.nih.gov/8816754/) | Classic background on cascade ultrasensitivity; an alternative larger model considered during feasibility | Evidence that the selected model is uniquely appropriate |
+| [Gevertz and Kareva (2024)](https://pubmed.ncbi.nlm.nih.gov/38184643/) | Additional primary context connecting design and identifiability | A transfer of results from their different model to this MAPK benchmark |
 
 The official BioModels repository supplies the actual licensed computational
 input. SciPy's versioned solver documentation supplies the numerical API and

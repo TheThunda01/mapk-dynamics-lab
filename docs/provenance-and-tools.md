@@ -1,5 +1,7 @@
 # Provenance and related tools
 
+Provenance means the record of where a file came from and how it was used. SBML (Systems Biology Markup Language) encodes models; MathML encodes equations. See the [glossary](glossary.md) for other file and solver terms.
+
 ## Exact computational source
 
 The offline input is the official BioModels GitHub mirror of
@@ -16,7 +18,7 @@ because it returned an access error. Model structure, annotations and license
 were inspected in the accessible official GitHub mirror. The SBML annotation
 dates its last modification to 2014-05-30. We intentionally use that snapshot;
 we do not claim it is the latest curation or that it reproduces the complete
-original publication's figures. The [2024 curation study](https://pubmed.ncbi.nlm.nih.gov/39636894/)
+original publication's figures. The study by [Xu and Smith (2024)](https://pubmed.ncbi.nlm.nih.gov/39636894/)
 is a reason to keep model encodings and simulation settings distinct.
 
 ## Ideas, code and other implementations
@@ -32,7 +34,7 @@ interfaces, rather than implementing those integrators. NumPy, pandas and
 Matplotlib provide arrays, table output and plotting. Exact tested versions are
 in `requirements.txt`, with runtime versions recorded in each run manifest.
 
-The [E-ALPIPE paper](https://pubmed.ncbi.nlm.nih.gov/41321992/) motivates examining
+The study by [Liu et al. (2025)](https://pubmed.ncbi.nlm.nih.gov/41321992/) motivates examining
 sequential data collection and practical identifiability. It is a conceptual
 comparison, not a source of copied code or a claimed reproduction. Our latent
 variance criterion is simpler and is described fully in the methods.
