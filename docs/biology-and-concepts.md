@@ -2,7 +2,7 @@
 
 ## A signaling cascade, not a direct readout of cell behavior
 
-Cells respond to signals through networks of interacting molecules. One common arrangement is a cascade: an active kinase, an enzyme that transfers a phosphate group, promotes phosphorylation (addition of that group) of another kinase, which acts on the next layer. Phosphatases remove phosphate groups and oppose these changes. Mitogen-activated protein kinase (MAPK) cascades are useful examples because their responses can depend on both the amount of stimulation and the timing of activation.
+Cells respond to signals through networks of interacting molecules. In a cascade, an active kinase promotes phosphorylation of another kinase, which acts on the next layer. A kinase is an enzyme that transfers a phosphate group; phosphorylation adds that group to a molecule. Phosphatases remove phosphate groups and oppose these changes. Mitogen-activated protein kinase (MAPK) cascades illustrate how responses can depend on both the amount of stimulation and the timing of activation.
 
 This project uses the compact model published by [Kholodenko (2000)](https://pubmed.ncbi.nlm.nih.gov/10712587/) and encoded in the public BioModels entry BIOMD0000000010. Its three layers represent MAPK kinase kinase (MAPKKK), MAPK kinase (MAPKK), and MAPK. These are model components, not a complete inventory of signaling in a particular cell. A simulated increase in phosphorylated MAPK does not, by itself, predict proliferation, survival, drug response, or any other cellular outcome.
 
@@ -10,7 +10,7 @@ This project uses the compact model published by [Kholodenko (2000)](https://pub
 
 The archive tracks eight chemical species. MAPKKK has unphosphorylated and phosphorylated forms. Each downstream kinase has unphosphorylated, singly phosphorylated, and doubly phosphorylated forms. Ten reaction rates move material between these forms. The model includes no protein synthesis or degradation, so the total amount in each kinase layer stays constant.
 
-Those conserved totals allow five independent state variables: knowing the phosphorylated forms determines the remaining unphosphorylated amount. Conservation is therefore more than a convenient check. It is part of the model's biological assumption. It would cease to describe a system in which total protein abundance changed substantially over the observation period.
+Conserved totals reduce the model to five independent state variables: knowing the phosphorylated forms determines the remaining unphosphorylated amount. This conservation is both a numerical check and a biological assumption. It would no longer describe a system whose total protein abundance changed substantially during observation.
 
 The Systems Biology Markup Language (SBML) file records initial concentrations, reaction formulas, parameter values, and a unit-sized compartment. Several parameter units are implicit rather than individually annotated. The implementation follows the declared model conventions; its numerical values should not be treated as a fully documented assay or transferred directly into a different biological setting.
 
@@ -18,13 +18,13 @@ The Systems Biology Markup Language (SBML) file records initial concentrations, 
 
 In this model, doubly phosphorylated MAPK inhibits activation of the first kinase layer. That closes a negative feedback loop. A stronger downstream signal can reduce its own upstream input. The original study showed how negative feedback combined with a sufficiently sensitive cascade can produce sustained oscillations under particular assumptions and parameter choices. It did not establish that every MAPK pathway oscillates. [Kholodenko (2000)](https://pubmed.ncbi.nlm.nih.gov/10712587/)
 
-There is also relevant contrary evidence about the model assumptions. [Blüthgen et al. (2006)](https://pubmed.ncbi.nlm.nih.gov/16478465/) examined sequestration, where enzymes and their targets spend time bound in complexes. Their modeling showed that this can reduce ultrasensitivity and remove oscillatory behavior in a feedback cascade. Our compact model does not explicitly represent those complexes. A clean simulated oscillation is consequently a result within this model, not proof of a mechanism operating in real cells.
+[Blüthgen et al. (2006)](https://pubmed.ncbi.nlm.nih.gov/16478465/) showed how sequestration can change these predictions. Enzymes and their targets spend time bound in complexes; their modeling showed that this binding can reduce ultrasensitivity and remove oscillatory behavior in a feedback cascade. Our compact model omits those complexes. Its simulated oscillations therefore do not prove that the mechanism operates in real cells.
 
 ## What the computer actually observes
 
-All observations used by the learning experiment are simulated. A hidden parameter setting generates a trajectory, and a declared noise model supplies artificial measurement variation. A query reveals one selected simulated observation. No laboratory measurement is collected, and no historical time-course table is presented as if it had been measured for this project.
+The learning experiment uses simulated observations throughout. A hidden parameter setting generates a trajectory, and a declared noise model adds artificial measurement variation. Each query reveals one simulated observation. The project collects no laboratory measurements and does not present a historical time-course table as its own measurements.
 
-This separation lets us test an algorithm: did it recover the hidden simulation setting, and did it predict other simulated observations well? It cannot establish whether the same procedure would work with biological heterogeneity, unknown assay bias, missing reactions, or a different measurement scale. The chosen noisy observation model is an assumption to examine, not a property demonstrated by the source archive.
+The simulation lets us test whether the algorithm recovers the hidden setting and predicts other simulated observations. It cannot establish whether the procedure would work with biological heterogeneity, unknown assay bias, missing reactions, or a different measurement scale. The noise model remains an assumption; the source archive does not validate it.
 
 ## Learning over a small set of hypotheses
 
@@ -32,7 +32,7 @@ The learning task varies two declared parameter directions related to upstream a
 
 The resulting posterior is conditional on that grid, the fixed parameters, and the chosen noise model. It is not a posterior over every possible signaling network or every continuous parameter value. A sharp concentration of weight can be misleading if the true setting is absent from the allowed grid points or if an omitted mechanism explains the observations better. In the implemented off-grid check, the truth is between points but inside their numerical ranges.
 
-This is also different from proving structural identifiability. Structural identifiability asks whether ideal observations could uniquely determine parameters of a specified model. Practical identifiability additionally depends on finite, noisy data. Learning two grid coordinates while fixing the other constants does not answer either question for the full model. The distinction is discussed in [Liu et al. (2025)](https://pubmed.ncbi.nlm.nih.gov/41321992/).
+Structural identifiability asks whether ideal observations could uniquely determine a specified model's parameters. Practical identifiability asks how finite, noisy data constrain them. Learning two grid coordinates while fixing the other constants establishes neither form of identifiability for the full model. [Liu et al. (2025)](https://pubmed.ncbi.nlm.nih.gov/41321992/) discuss this distinction.
 
 ## What closes the loop
 

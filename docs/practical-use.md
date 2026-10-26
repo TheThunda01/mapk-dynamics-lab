@@ -3,10 +3,11 @@
 ## Where this fits
 
 Use this repository to inspect a compact model translation, teach finite-grid
-Bayesian updating (revising hypothesis weights using an assumed observation likelihood), or compare a new virtual observation-selection rule against
-declared baselines. It is also a reproducible example of connecting biological
-assumptions to an auditable numerical experiment. It is not a general SBML
-engine, a parameter-fitting service for arbitrary data, or a laboratory protocol.
+Bayesian updating, or compare a new virtual observation-selection rule against
+declared baselines. Bayesian updating revises hypothesis weights using an assumed
+observation likelihood. The experiment connects biological assumptions to
+numerical results that readers can audit. It is not a general SBML engine,
+a parameter-fitting service for arbitrary data, or a laboratory protocol.
 
 ## Input and output contract
 
@@ -38,8 +39,8 @@ written failed-run folder as complete.
 
 ## Worked use case
 
-Suppose you want to know whether a disagreement rule beats one simple fixed
-schedule under precisely the same virtual data. Reproduce the declared run:
+To compare the disagreement rule with a simple fixed schedule on the same virtual
+data, reproduce the declared run:
 
 ```bash
 python scripts/run_benchmark.py --out .reproduction
@@ -54,12 +55,12 @@ spent their budget. For a chosen seed/policy, the `h0` through `h48` columns in
 concentrated. The saved truth is used for evaluation only; giving it to a new
 selection policy would invalidate the comparison.
 
-Next inspect `stress_summary.csv`. Its generating setting is between grid points, inside both parameter ranges,
-although the noise model remains correctly specified. This is discretization
-mismatch, not extrapolation outside the ranges. Lower posterior
-entropy cannot be read as assurance that the correct biological explanation
-has been found. This example is intentionally small; do not select a preferred
-policy using one favorable seed.
+Next inspect `stress_summary.csv` to examine the limits of the finite grid.
+The generating setting lies between grid points, inside both parameter ranges,
+and the noise model remains correctly specified. This tests discretization
+mismatch, not extrapolation outside the ranges. Lower posterior entropy does
+not establish that the correct biological explanation has been found. The example
+is small; do not select a preferred policy using one favorable seed.
 
 ## Checks before relying on a result
 
@@ -87,11 +88,11 @@ correct posterior arithmetic do not validate the compact biological model.
 
 ## Next improvements
 
-Useful bounded extensions are separate noise-misspecification tests, several
-off-grid truths, strictly unqueried evaluation windows and additional declared
-fixed schedules. A genuinely different mechanism, such as an explicit-complex
-model, needs its own licensed source and validation. Continuous inference or
-real-data fitting should follow a fresh identifiability and observation-model
-assessment, not simply add more parameters to this grid.
+Possible extensions include testing noise misspecification, comparing several
+off-grid truths, evaluating strictly unqueried windows and adding declared fixed
+schedules. A different mechanism, such as an explicit-complex model, needs its
+own licensed source and validation. Before attempting continuous inference or
+fitting real data, reassess identifiability and the observation model. Adding
+parameters to this grid alone does not address those questions.
 
 For definitions, see the [glossary](glossary.md); for the rationale and limits of each material choice, see the [assumptions](assumptions.md).

@@ -1,10 +1,9 @@
 # Why build a virtual signaling experiment?
 
-Imagine having enough resources to observe a pathway only a few more times.
-Sampling at regular intervals is simple, but it may repeatedly measure moments
-where competing explanations make nearly identical predictions. The useful
-question is not only “which parameters fit?” It is also “which observation could
-help separate the explanations we still consider plausible?”
+With a limited observation budget, timing matters. Regular sampling is simple,
+but it may repeatedly measure moments when competing explanations predict nearly
+the same outcome. The question extends beyond “which parameters fit?” to “which
+observation could distinguish the explanations that remain plausible?”
 
 This project explores that question with a deliberately small mathematical
 system. The [Kholodenko (2000) MAPK model](https://pubmed.ncbi.nlm.nih.gov/10712587/)
@@ -18,16 +17,15 @@ simulated hidden setting produces noisy observations of two active kinase
 fractions. Three policies spend the same observation budget: a predetermined
 schedule, random selection and a rule that seeks disagreement among the current
 hypotheses. After each query, Gaussian likelihoods update the hypothesis weights.
-The full observations, selected IDs and posterior weights are saved, so the
-comparison can be audited rather than accepted from a plot alone.
+The experiment saves all observations, selected IDs and posterior weights so
+readers can audit the comparison beyond its summary plots.
 
-There are two reasons this matters for a computational biology portfolio. First,
-it connects biological assumptions to equations, solver behavior, uncertainty
-and a concrete sequential decision. Second, it makes the limits of that decision
-visible. An independent verifier checks the exported arithmetic. A second solver
-and a conservation-reduced implementation check the dynamics numerically. A small
-off-grid scenario shows why a concentrated posterior does not guarantee that the
-right explanation was among the allowed hypotheses.
+The project connects biological assumptions to equations, numerical solutions,
+uncertainty and sequential decisions. An independent verifier checks the exported
+arithmetic; a second solver and a conservation-reduced implementation check the
+dynamics numerically. A small off-grid scenario exposes a separate limitation:
+a concentrated posterior does not guarantee that the allowed hypotheses include
+the generating explanation.
 
 The central themes are mechanistic modeling, reproducibility, conditional
 uncertainty and virtual experimental design. The study by
@@ -35,11 +33,11 @@ uncertainty and virtual experimental design. The study by
 supports investigating observation choice, but this repository uses its own
 simple variance heuristic. It does not reproduce that paper's algorithm.
 
-Nothing here establishes the behavior of real cells. The compact model omits
-complexes whose sequestration can change cascade dynamics, as demonstrated by
+The simulation does not establish the behavior of real cells. The compact model
+omits complexes whose sequestration can change cascade dynamics, as demonstrated by
 [Blüthgen et al. (2006)](https://pubmed.ncbi.nlm.nih.gov/16478465/). The appropriate
 next step is a broader computational stress test or a carefully specified
-comparison with suitable measurements, with the model and observation assumptions
-reassessed first. The current result is a transparent simulation benchmark.
+comparison with suitable measurements. Either step requires reassessing the
+model and observation assumptions. The current result remains a simulation benchmark.
 
 For definitions, see the [glossary](glossary.md); for the rationale and limits of each material choice, see the [assumptions](assumptions.md).

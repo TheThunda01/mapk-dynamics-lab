@@ -1,9 +1,13 @@
 # MAPK dynamics lab
 
 Which simulated observations help distinguish hypotheses about a signaling pathway?
-MAPK means mitogen-activated protein kinase, one layer of a signaling cascade. A kinase adds a phosphate group to a target; this model links three kinase layers. This repository turns a small, published MAPK model into an inspectable experiment:
-simulate a hidden parameter setting, choose a measurement, update the hypotheses,
-and repeat. It compares a variance-guided rule with random and fixed schedules.
+
+This repository simulates a hidden parameter setting, selects a measurement,
+updates the hypotheses, and repeats. It compares a variance-guided selection rule
+with random and fixed schedules using a small, published MAPK model.
+
+MAPK means mitogen-activated protein kinase, one layer of a signaling cascade.
+A kinase adds a phosphate group to a target; this model links three kinase layers.
 
 Start with the [project context](docs/project-context.md) for the motivation or
 [biology and concepts](docs/biology-and-concepts.md) for a fuller explanation.
@@ -11,17 +15,17 @@ Start with the [project context](docs/project-context.md) for the motivation or
 ## Why this project
 
 A time course can look plausible while leaving several parameter explanations
-open. Choosing another observation is therefore part of the scientific problem.
+open. Another observation may help distinguish them.
 The [Kholodenko (2000) model](https://pubmed.ncbi.nlm.nih.gov/10712587/) is small enough
-to inspect and rich enough to show feedback-dependent dynamics. Its compactness
-also makes it possible to check the numerical implementation and compare repeated
-virtual experiments on an ordinary computer.
+to inspect and can show how feedback changes dynamics. Its size also lets readers
+check the numerical implementation and compare repeated virtual experiments on
+an ordinary computer.
 
 The goal is to evaluate a decision rule under stated assumptions. This project
 does not collect laboratory data, reproduce an original-paper figure, or establish
 that the model captures a particular cell's behavior.
 
-Figure 1 shows what closes the implemented loop and which information is reserved for evaluation. Keeping those routes separate prevents the policy from choosing an observation using its hidden answer.
+Figure 1 separates the information used to choose observations from the information reserved for evaluation. This separation keeps hidden answers out of the selection policy.
 
 ![Virtual measurement-loop diagram separating hidden simulated truth, revealed observations, allowed model predictions, posterior updating, selection and evaluation](docs/figures/virtual-loop.svg)
 
@@ -58,8 +62,9 @@ experiment, so that run should not match the committed reference tables.
 
 ## Example results
 
-The committed [report](results/report.md) is computed from actual runs. At budget
-12, mean noiseless-curve root mean squared error (RMSE) across the 20 matched-model seeds was as shown in Table 1.
+Variance-guided selection had the lowest mean noiseless-curve root mean squared
+error (RMSE) at budget 12 across the 20 matched-model seeds (Table 1).
+The committed [report](results/report.md) records these simulation runs.
 
 **Table 1. Mean final curve error in the matched-model simulation.**
 
@@ -80,11 +85,16 @@ points and an unqueried late interval; it is not a purely held-out error estimat
 See the [paired-seed plot](results/paired_final_rmse.png) and [full trials](results/trials.csv).
 
 In the off-grid check, the variance-guided rule had mean final RMSE 0.010007 and
-entropy 0.820690 nats, a measure of weight dispersion using natural logarithms. The generating point is between allowed points but inside both parameter ranges; this tests finite-grid resolution, not out-of-range extrapolation. Concentrating weight among allowed hypotheses cannot make
-a missing generating point available. These examples support a bounded simulation
-comparison, not a general claim that this rule is best.
+entropy 0.820690 nats. Entropy measures how dispersed the weights are; nats use
+natural logarithms. The generating point lies between allowed points but inside
+both parameter ranges, so this check tests finite-grid resolution, not
+out-of-range extrapolation.
 
-Figure 3 places final prediction error next to posterior entropy for the variance-guided policy. It helps distinguish two questions: how concentrated the allowed hypotheses are, and how close their averaged prediction is to the hidden simulated curve.
+Concentrated weights cannot add an excluded generating point to the hypothesis grid.
+These examples support a bounded simulation comparison, not a general claim
+that this rule is best.
+
+Figure 3 compares final prediction error with posterior entropy for the variance-guided policy. Entropy describes how concentrated the hypothesis weights are; prediction error describes how close their averaged prediction is to the hidden simulated curve.
 
 ![Scatter plot of final curve error against posterior entropy for twenty grid-matched experiments and six noise repeats at one off-grid point](docs/figures/entropy-and-error.svg)
 
@@ -92,11 +102,14 @@ Figure 3 places final prediction error next to posterior entropy for the varianc
 
 ## Practical use and limitations
 
-This is a starting point for testing virtual observation-selection logic and
-auditing a small ordinary differential equation (ODE) translation. ODEs describe how modeled quantities change over time. The adaptive score is posterior-weighted
-variance of the latent (noiseless) predicted mean, **not exact expected information gain**.
-The normally distributed (Gaussian) noise, constant totals, two varying parameters and uniform grid prior
-are choices made here. Most model parameters remain fixed.
+Use this project to test virtual observation-selection logic and audit a small
+ordinary differential equation (ODE) translation. ODEs describe how modeled
+quantities change over time.
+
+The selection rule scores posterior-weighted variance of the latent (noiseless)
+predicted mean, **not exact expected information gain**. The analysis assumes
+normally distributed (Gaussian) noise, constant totals and a uniform grid prior.
+Only two parameters vary; the others remain fixed.
 
 The compact model omits explicit kinase–substrate complexes.
 [Blüthgen et al. (2006)](https://pubmed.ncbi.nlm.nih.gov/16478465/) showed that
