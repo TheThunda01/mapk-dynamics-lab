@@ -49,6 +49,8 @@ python scripts/compare_results.py results .reproduction
 python -m unittest discover -s tests -v
 ```
 
+The Markdown report is written as UTF-8, including on systems with a different default text encoding.
+
 The benchmark needs no network after dependencies are installed. The default run
 takes under a minute in the development environment; runtime varies by machine.
 Use `--seeds 2 --grid-size 3` for a smaller exploration. Those flags change the

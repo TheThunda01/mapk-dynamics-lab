@@ -283,4 +283,4 @@ def report(out, summary, checks, seeds, hypotheses, stress_summary):
         lines.append(f"| {row.policy} | {row.prediction_rmse_mean:.6f} | {row.entropy_nats_mean:.6f} |")
     lines += ["", "A concentrated grid posterior can coexist with prediction error when its generating point is missing.",
               "No true-hypothesis probability is reported for this scenario because the true point is outside the grid."]
-    (out / "report.md").write_text("\n".join(lines) + "\n")
+    (out / "report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")

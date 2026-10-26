@@ -5,6 +5,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import pandas as pd
 
@@ -16,6 +17,18 @@ spec.loader.exec_module(verification)
 
 
 class OutputTests(unittest.TestCase):
+    def test_report_is_utf8_with_a_legacy_default_encoding(self):
+        from mapk_lab.experiment import report
+
+        summary = pd.read_csv(ROOT / "results/summary.csv")
+        stress_summary = pd.read_csv(ROOT / "results/stress_summary.csv")
+        checks = json.loads((ROOT / "results/solver_checks.json").read_text(encoding="utf-8"))
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)
+            with patch("io.text_encoding", side_effect=lambda encoding, stacklevel=2: encoding or "cp1252"):
+                report(out, summary, checks, 20, 49, stress_summary)
+            self.assertIn("3650–4000", (out / "report.md").read_text(encoding="utf-8"))
+
     def test_committed_results_pass_independent_replay(self):
         result = verification.verify()
         self.assertTrue(result["passed"])
