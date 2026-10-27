@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "source_sbml_sha256": "f36baf246fc4f4548f23682d02d99c48bd8d3e2ab211901938cbc724e94c53b6",
+  "script_sha256": "9bbbfb639b1644cd6e90ec1561b2116e8c7e188fceca1319d7433207de847c69",
+  "copasi_version": "COPASI 4.48 (Build 311) OpenMP 2.0 (threads: 1, schedule: static, chunk size: 0)",
+  "python_versions": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8"
+  },
+  "settings": {
+    "v1_scale": 1,
+    "ki": 9,
+    "times_seconds": [
+      0,
+      4000
+    ],
+    "time_points": 81,
+    "species_order": [
+      "MKKK",
+      "MKKK_P",
+      "MKK",
+      "MKK_P",
+      "MKK_PP",
+      "MAPK",
+      "MAPK_P",
+      "MAPK_PP"
+    ],
+    "copasi_rtol": 1e-10,
+    "copasi_atol": 1e-12,
+    "python_method": "BDF",
+    "python_rtol": 1e-08,
+    "python_atol": 1e-10
+  },
+  "checks": {
+    "max_absolute_difference_nM": 4.9555506905107904e-05,
+    "absolute_tolerance_nM": 0.002,
+    "species_max_absolute_difference_nM": {
+      "MKKK": 6.859838421746645e-06,
+      "MKKK_P": 6.8598382014783965e-06,
+      "MKK": 1.9523691577205682e-05,
+      "MKK_P": 1.4688876873947265e-05,
+      "MKK_PP": 1.5577079516049253e-05,
+      "MAPK": 4.6132081152450155e-05,
+      "MAPK_P": 2.1672928887994658e-05,
+      "MAPK_PP": 4.9555506905107904e-05
+    },
+    "conservation_max_absolute_difference_nM": 1.2505552149377763e-12,
+    "minimum_concentration_nM": 0.08157366329958125,
+    "initial_state_max_absolute_difference_nM": 0.0,
+    "passed": true
+  },
+  "warnings": [],
+  "scope": "Baseline numerical agreement for the same pinned model; not biological validation or a test of the observation-selection policy.",
+  "outputs_sha256": {
+    "baseline.cps": "8dbbe0fd66de030c4e578148b31b806e821924de8f3b881829075801844c32fd",
+    "comparison.csv": "42a1f261688dadd6c688745af96d6e559b5fec1ea31aca6145baf861e02a9e35",
+    "comparison.png": "c019012dd3d65fc1b406224847d3c4071b9535ed01e4e9a60d404b45966e48de",
+    "copasi-trajectory.tsv": "91e46d1300770ff32db68c6b7b8fe3233e117d4ad1e0c3d919c15475d691519b"
+  }
+}
