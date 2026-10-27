@@ -14,6 +14,8 @@ Start with the [project context](docs/project-context.md) for the motivation or
 
 ## Why this project
 
+This is the third featured study in [From biological measurements to better experiments](https://github.com/TheThunda01/TheThunda01/blob/main/PROJECT_GUIDE.md): moving from what a model can explain to which observation could distinguish its remaining hypotheses.
+
 A time course can look plausible while leaving several parameter explanations
 open. Another observation may help distinguish them.
 The [Kholodenko (2000) model](https://pubmed.ncbi.nlm.nih.gov/10712587/) is small enough
