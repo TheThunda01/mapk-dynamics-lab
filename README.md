@@ -35,6 +35,7 @@ Figure 1 separates the information used to choose observations from the informat
 
 - Verifies an offline BioModels snapshot released under CC0, an upstream public-domain dedication, and translates its eight species and ten reaction rates.
 - Checks conserved totals, nonnegative trajectories, source MathML rates, tighter solver tolerances, and a separately written five-state formulation.
+- Provides an optional COPASI import and baseline cross-engine comparison, with a native model, aligned species tables and explicit numerical acceptance checks.
 - Compares three policies across 20 matched-model seeds, with 49 parameter hypotheses, 72 available observations and a 12-observation budget.
 - Adds six off-grid noise repeats to expose the limits of a finite hypothesis set.
 - Exports observations, selections, full posterior weights (updated probabilities over the allowed hypotheses), prediction tables and metrics, then independently replays the likelihood and acquisition calculations.
@@ -83,6 +84,8 @@ same first two observations and, within a seed, the same candidate-indexed noise
 Budget zero is the uniform prior: equal weights before any observations. The RMSE covers 81 times, including queried
 points and an unqueried late interval; it is not a purely held-out error estimate.
 See the [paired-seed plot](results/paired_final_rmse.png) and [full trials](results/trials.csv).
+
+The separate [COPASI comparison](docs/copasi-comparison.md) checks the same baseline model through another importer and integration engine. All 648 concentration comparisons passed the declared 0.002 nM absolute criterion; the maximum difference was about 0.00005 nM. This is numerical agreement, not additional biological evidence.
 
 In the off-grid check, the variance-guided rule had mean final RMSE 0.010007 and
 entropy 0.820690 nats. Entropy measures how dispersed the weights are; nats use

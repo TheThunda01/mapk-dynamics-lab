@@ -1,4 +1,8 @@
 * text=auto eol=lf
+
+# External COPASI outputs are fingerprinted as exact bytes.
+examples/copasi-comparison/*.cps -text -whitespace linguist-generated
+examples/copasi-comparison/*.tsv -text -whitespace linguist-generated
 data/model.xml -text
 data/LICENSE-CC0.txt -text
 data/UPSTREAM_README.md -text
