@@ -41,3 +41,7 @@ comparison with suitable measurements. Either step requires reassessing the
 model and observation assumptions. The current result remains a simulation benchmark.
 
 For definitions, see the [glossary](glossary.md); for the rationale and limits of each material choice, see the [assumptions](assumptions.md).
+
+## Where this fits in the portfolio
+
+[Enzyme kinetics](https://github.com/TheThunda01/enzyme-kinetics-workbench) introduces parameter uncertainty; [GFP active learning](https://github.com/TheThunda01/gfp-active-learning) compares selection rules using existing measurements. This simulation explores observation choice under explicit mechanistic assumptions. The projects share a question, not a dataset or processing pipeline. Deeper MAPK failure analysis is a planned next direction after the focused GFP follow-up in the [roadmap](https://github.com/TheThunda01/TheThunda01/blob/main/PORTFOLIO_PLAN.md).
