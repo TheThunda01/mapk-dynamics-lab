@@ -42,6 +42,7 @@ def verify(directory=ROOT / "results", data_dir=ROOT / "data"):
     source = verify_sources(data_dir)
     metadata = json.loads((directory / "run_manifest.json").read_text())
     require(metadata["source"] == source, "Run/source manifests differ")
+    require(metadata["schema_version"] in (1, 2), "Unsupported result schema")
     hashes = metadata["artifacts_sha256"]
     required = {"hypotheses.csv", "candidates.csv", "candidate_predictions.csv", "evaluation_predictions.csv",
                 "virtual_truths.csv", "virtual_observations.csv", "selection_log.csv", "posterior_weights.csv",
@@ -128,6 +129,10 @@ def verify(directory=ROOT / "results", data_dir=ROOT / "data"):
                             "prediction_rmse": np.sqrt(np.mean((weights @ evaluation - truth_curve) ** 2)),
                             "log_parameter_error": np.linalg.norm(weights @ np.log(parameters) - np.log(truth_parameters)),
                         }
+                        if metadata["schema_version"] == 2:
+                            # Each saved evaluation time contributes one value per readout.
+                            error_by_time = (weights @ evaluation - truth_curve).reshape(81, len(READOUTS))
+                            expected["late_window_rmse"] = np.sqrt(np.mean(error_by_time[-8:] ** 2))
                         if not stress:
                             expected["true_hypothesis_mass"] = weights[truth_id]
                         for column, value in expected.items():

@@ -71,20 +71,19 @@ The committed [report](results/report.md) records these simulation runs.
 
 **Table 1. Mean final curve error in the matched-model simulation.**
 
-| Selection rule | Mean RMSE |
-|---|---:|
-| Variance guided | 0.002679 |
-| Fixed schedule | 0.010577 |
-| Random schedule | 0.012998 |
+| Selection rule | Full curve RMSE | Late-window RMSE |
+|---|---:|---:|
+| Variance guided | 0.002679 | 0.002009 |
+| Fixed schedule | 0.010577 | 0.008488 |
+| Random schedule | 0.012998 | 0.010517 |
 
-![Simulated baseline dynamics and policy comparison](results/dynamics_and_design.png)
+![Baseline trajectory and mean policy errors on the full and late time windows](results/dynamics_and_design.png)
 
 **Figure 2. Simulated dynamics and the matched-model policy comparison.** Sources: [baseline trajectory](results/baseline_trajectory.csv) and [trial summaries](results/summary.csv). Error bars are descriptive standard errors across computational seeds, not independent biological replicates. The [full report](results/report.md) defines the evaluation scope.
 
 Both outputs are fractions of their kinase-layer totals. All policies share the
 same first two observations and, within a seed, the same candidate-indexed noise.
-Budget zero is the uniform prior: equal weights before any observations. The RMSE covers 81 times, including queried
-points and an unqueried late interval; it is not a purely held-out error estimate.
+Budget zero is the uniform prior: equal weights before any observations. Full curve RMSE averages squared errors before taking the square root across both readouts at 81 times, including points that policies can query. Late-window RMSE uses only the eight times from 3650 through 4000. No policy can query those times. Both columns average per-seed RMSE.
 See the [paired-seed plot](results/paired_final_rmse.png) and [full trials](results/trials.csv).
 
 The separate [COPASI comparison](docs/copasi-comparison.md) checks the same baseline model through another importer and integration engine. All 648 concentration comparisons passed the declared 0.002 nM absolute criterion; the maximum difference was about 0.00005 nM. This is numerical agreement, not additional biological evidence.

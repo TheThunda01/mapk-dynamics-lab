@@ -118,8 +118,7 @@ observation only after an ID is selected.
 We report posterior entropy; true-grid-point mass; Euclidean error of the
 posterior mean log parameters; and RMSE of the posterior mean of the two output
 curves versus the noiseless truth at 81 times from 0 to 4000 in steps of 50.
-That curve error includes queried points and an unqueried late interval; it is
-not an independent held-out estimate. Averages and sample standard deviations
+Full curve error includes selectable points. The additional `late_window_rmse` field uses both readouts at eight times after the last candidate (3650 through 4000). It measures extrapolation within the same simulated trajectory. Averages and sample standard deviations
 summarize the 20 matched seeds; the plot uses SD divided by the square root of
 20 as a descriptive standard error. We run no significance test.
 

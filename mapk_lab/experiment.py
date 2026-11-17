@@ -93,23 +93,25 @@ def run_policy(predictions, observed_pool, policy, sigma, random_seed, budgets=B
     return selected, snapshots
 
 
-def metrics(weights, truth_id, parameters, evaluation):
-    return truth_metrics(weights, parameters[truth_id], parameters, evaluation, evaluation[truth_id]) | {
+def metrics(weights, truth_id, parameters, evaluation, late_window):
+    return truth_metrics(weights, parameters[truth_id], parameters, evaluation, evaluation[truth_id], late_window) | {
         "true_hypothesis_mass": float(weights[truth_id])}
 
 
-def truth_metrics(weights, truth_parameters, parameters, evaluation, truth_curve):
+def truth_metrics(weights, truth_parameters, parameters, evaluation, truth_curve, late_window):
     positive = weights > 0
     expected_log_parameters = weights @ np.log(parameters)
+    squared_error = (weights @ evaluation - truth_curve) ** 2
     return {
         "entropy_nats": float(-np.sum(weights[positive] * np.log(weights[positive]))),
         "log_parameter_error": float(np.linalg.norm(expected_log_parameters - np.log(truth_parameters))),
-        "prediction_rmse": float(np.sqrt(np.mean((weights @ evaluation - truth_curve) ** 2))),
+        "prediction_rmse": float(np.sqrt(squared_error.mean())),
+        "late_window_rmse": float(np.sqrt(squared_error[late_window].mean())),
     }
 
 
 def summarise(trials):
-    columns = [c for c in ["entropy_nats", "true_hypothesis_mass", "log_parameter_error", "prediction_rmse"] if c in trials]
+    columns = [c for c in ["entropy_nats", "true_hypothesis_mass", "log_parameter_error", "prediction_rmse", "late_window_rmse"] if c in trials]
     table = trials.groupby(["policy", "budget"], sort=True)[columns].agg(["mean", "std"])
     table.columns = [f"{metric}_{stat}" for metric, stat in table.columns]
     return table.reset_index()
@@ -131,6 +133,7 @@ def run(out, data_dir=ROOT / "data", seeds=20, grid_size=7):
     model = load_model(data_dir)
     candidate_times = np.arange(100., 3601., 100.)
     evaluation_times = np.arange(0., 4001., 50.)
+    late_window = np.repeat(evaluation_times > candidate_times.max(), len(READOUTS))
     all_times = np.unique(np.r_[candidate_times, evaluation_times])
     candidate_indices = np.searchsorted(all_times, candidate_times)
     evaluation_indices = np.searchsorted(all_times, evaluation_times)
@@ -167,7 +170,7 @@ def run(out, data_dir=ROOT / "data", seeds=20, grid_size=7):
                                        "candidate_id": candidate, "observed": observed_pool[candidate]})
             for budget, weights in snapshots.items():
                 trial_rows.append({"seed": seed, "policy": policy, "budget": budget,
-                                   **metrics(weights, truth_id, parameters, evaluation)})
+                                   **metrics(weights, truth_id, parameters, evaluation, late_window)})
                 posterior_rows.append({"seed": seed, "policy": policy, "budget": budget,
                                        **{f"h{h}": weight for h, weight in enumerate(weights)}})
     trials = pd.DataFrame(trial_rows)
@@ -196,7 +199,7 @@ def run(out, data_dir=ROOT / "data", seeds=20, grid_size=7):
                                       "observed": observed[c]} for step, c in enumerate(chosen, 1))
             for budget, weights in snapshots.items():
                 stress_trials.append({"seed": seed, "policy": policy, "budget": budget,
-                                      **truth_metrics(weights, stress_parameters, parameters, evaluation, stress_evaluation)})
+                                      **truth_metrics(weights, stress_parameters, parameters, evaluation, stress_evaluation, late_window)})
                 stress_posteriors.append({"seed": seed, "policy": policy, "budget": budget,
                                           **{f"h{h}": weight for h, weight in enumerate(weights)}})
     stress_trials = pd.DataFrame(stress_trials)
@@ -213,7 +216,7 @@ def run(out, data_dir=ROOT / "data", seeds=20, grid_size=7):
     plot_results(out, trials, summary, evaluation_times, baseline)
     report(out, summary, checks, seeds, len(parameters), summarise(stress_trials))
     metadata = {
-        "schema_version": 1, "package_version": __version__, "source": model.manifest,
+        "schema_version": 2, "package_version": __version__, "source": model.manifest,
         "dependencies": {"python": platform.python_version(), "numpy": np.__version__, "scipy": scipy.__version__,
                          "pandas": pd.__version__, "matplotlib": matplotlib.__version__},
         "configuration": {"seeds": list(range(seeds)), "grid_size": grid_size, "sigma": SIGMA,
@@ -237,16 +240,20 @@ def run(out, data_dir=ROOT / "data", seeds=20, grid_size=7):
 
 
 def plot_results(out, trials, summary, times, baseline):
-    fig, axes = plt.subplots(1, 2, figsize=(10, 3.8), constrained_layout=True)
+    fig, axes = plt.subplots(1, 3, figsize=(13, 3.8), constrained_layout=True)
     for col, label in ((4, "MKK-PP"), (7, "MAPK-PP")):
         axes[0].plot(times, baseline[:, col] / 300., label=label)
-    axes[0].set(xlabel="Source model time", ylabel="Fraction of layer total", title="Pinned-model baseline")
+    axes[0].set(xlabel="Model time", ylabel="Fraction of layer total", title="Baseline trajectory")
     axes[0].legend()
-    for policy, frame in summary.groupby("policy"):
-        axes[1].errorbar(frame.budget, frame.prediction_rmse_mean,
-                         yerr=frame.prediction_rmse_std / np.sqrt(trials.seed.nunique()), marker="o", capsize=3,
-                         label=policy.replace("_", " "))
-    axes[1].set(xlabel="Number of virtual observations", ylabel="Noiseless-curve RMSE", title="Mean ± descriptive SE across seeds")
+    axes[2].sharey(axes[1])
+    for ax, metric, title in zip(
+        axes[1:], ("prediction_rmse", "late_window_rmse"), ("Full trajectory", "After the last candidate time")
+    ):
+        for policy, frame in summary.groupby("policy"):
+            ax.errorbar(frame.budget, frame[metric + "_mean"],
+                        yerr=frame[metric + "_std"] / np.sqrt(trials.seed.nunique()),
+                        marker="o", capsize=3, label=policy.replace("_", " "))
+        ax.set(xlabel="Virtual observations", ylabel="Mean RMSE ± SE", title=title)
     axes[1].legend(fontsize=8)
     fig.savefig(out / "dynamics_and_design.png", dpi=150, metadata={"Software": "mapk-dynamics-lab"})
     plt.close(fig)
@@ -266,10 +273,10 @@ def report(out, summary, checks, seeds, hypotheses, stress_summary):
     final = summary[summary.budget == max(BUDGETS)]
     lines = ["# Virtual MAPK measurement benchmark", "", f"{seeds} synthetic seeds, {hypotheses} hypotheses, 72 candidate observations and a budget of 12.",
              "The generating model belongs to the inference grid. These are simulated comparisons, not measurements from cells.", "",
-             "| Policy | Mean final curve RMSE | Mean final entropy (nats) |", "|---|---:|---:|"]
+             "| Policy | Full curve RMSE | Late-window RMSE | Entropy (nats) |", "|---|---:|---:|---:|"]
     for row in final.itertuples():
-        lines.append(f"| {row.policy} | {row.prediction_rmse_mean:.6f} | {row.entropy_nats_mean:.6f} |")
-    lines += ["", "RMSE compares the posterior mean curve with the hidden noiseless curve at 81 times, including the unqueried 3650–4000 interval.",
+        lines.append(f"| {row.policy} | {row.prediction_rmse_mean:.6f} | {row.late_window_rmse_mean:.6f} | {row.entropy_nats_mean:.6f} |")
+    lines += ["", "Full curve RMSE covers 81 times. Late-window RMSE scores the two readouts at eight times from 3650–4000, after the last selectable observation. Each entry averages the per-seed error at budget 12.",
               "Error bars in the figure are descriptive standard errors across matched seeds; no population or significance claim is made.", "",
               f"Baseline numerical checks passed: maximum default-BDF / tight-Radau difference {checks['bdf_vs_radau_max_abs']:.3g} source concentration units (threshold 0.002).",
               "The check concerns numerical agreement; it does not establish biological validity.", "",
@@ -278,9 +285,9 @@ def report(out, summary, checks, seeds, hypotheses, stress_summary):
     lines += ["", "## Off-grid stress check", "",
               "Six further noise repeats use V1 scale 1.05 and Ki 9.75, absent from the unchanged hypothesis grid.",
               "This is a small numerical stress case, not a model-mismatch survey. The posterior has no 'none of the above' hypothesis.", "",
-              "| Policy | Mean final curve RMSE | Mean final entropy (nats) |", "|---|---:|---:|"]
+              "| Policy | Full curve RMSE | Late-window RMSE | Entropy (nats) |", "|---|---:|---:|---:|"]
     for row in stress_summary[stress_summary.budget == max(BUDGETS)].itertuples():
-        lines.append(f"| {row.policy} | {row.prediction_rmse_mean:.6f} | {row.entropy_nats_mean:.6f} |")
+        lines.append(f"| {row.policy} | {row.prediction_rmse_mean:.6f} | {row.late_window_rmse_mean:.6f} | {row.entropy_nats_mean:.6f} |")
     lines += ["", "A concentrated grid posterior can coexist with prediction error when its generating point is missing.",
               "No true-hypothesis probability is reported for this scenario because the true point is outside the grid."]
     (out / "report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
