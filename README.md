@@ -1,33 +1,14 @@
 # MAPK dynamics lab
 
-Which simulated observations help distinguish hypotheses about a signaling pathway?
+Give three selection rules the same budget of 12 simulated observations of a signaling pathway. One queries the readout and time where the remaining models disagree most. The others follow a fixed schedule or choose at random. Compare how closely each rule predicts the hidden trajectory, including the interval after the final opportunity to observe it.
 
-This repository simulates a hidden parameter setting, selects a measurement,
-updates the hypotheses, and repeats. It compares a variance-guided selection rule
-with random and fixed schedules using a small, published MAPK model.
-
-MAPK means mitogen-activated protein kinase, one layer of a signaling cascade.
-A kinase adds a phosphate group to a target; this model links three kinase layers.
-
-Start with the [project context](docs/project-context.md) for the motivation or
-[biology and concepts](docs/biology-and-concepts.md) for a fuller explanation.
+The published model links three kinase layers, including mitogen-activated protein kinase (MAPK). A kinase adds a phosphate group to a target. See the [biology guide](docs/biology-and-concepts.md) for the model and its assumptions.
 
 ## Why this project
 
 This is the third featured study in [From biological measurements to better experiments](https://github.com/TheThunda01/TheThunda01/blob/main/PROJECT_GUIDE.md): moving from what a model can explain to which observation could distinguish its remaining hypotheses.
 
-A time course can look plausible while leaving several parameter explanations
-open. Another observation may help distinguish them.
-The [Kholodenko (2000) model](https://pubmed.ncbi.nlm.nih.gov/10712587/) is small enough
-to inspect and can show how feedback changes dynamics. Its size also lets readers
-check the numerical implementation and compare repeated virtual experiments on
-an ordinary computer.
-
-The goal is to evaluate a decision rule under stated assumptions. This project
-does not collect laboratory data, reproduce an original-paper figure, or establish
-that the model captures a particular cell's behavior.
-
-Figure 1 separates the information used to choose observations from the information reserved for evaluation. This separation keeps hidden answers out of the selection policy.
+Several parameter settings can produce similar time courses. The small feedback model published by Kholodenko lets you compare selection rules across many simulated trajectories on an ordinary computer. Each policy sees only the observations it selects. The evaluator has the complete simulated trajectory, as Figure 1 shows. The results describe this simulation. [Original model](https://pubmed.ncbi.nlm.nih.gov/10712587/)
 
 ![Virtual measurement-loop diagram separating hidden simulated truth, revealed observations, allowed model predictions, posterior updating, selection and evaluation](docs/figures/virtual-loop.svg)
 
@@ -65,26 +46,23 @@ experiment, so that run should not match the committed reference tables.
 
 ## Example results
 
-Variance-guided selection had the lowest mean noiseless-curve root mean squared
-error (RMSE) at budget 12 across the 20 matched-model seeds (Table 1).
-The committed [report](results/report.md) records these simulation runs.
+After 12 observations, the variance-guided rule predicted the unqueried late interval with a mean root mean squared error (RMSE) of 0.002009, compared with 0.008488 for the fixed schedule. These errors use the same 20 simulated trajectories. Select budget 12 in the [summary table](results/summary.csv) or inspect individual seeds in the [trial table](results/trials.csv).
 
 **Table 1. Mean final curve error in the matched-model simulation.**
 
-| Selection rule | Mean RMSE |
-|---|---:|
-| Variance guided | 0.002679 |
-| Fixed schedule | 0.010577 |
-| Random schedule | 0.012998 |
+| Selection rule | Full curve RMSE | Late-window RMSE |
+|---|---:|---:|
+| Variance guided | 0.002679 | 0.002009 |
+| Fixed schedule | 0.010577 | 0.008488 |
+| Random schedule | 0.012998 | 0.010517 |
 
-![Simulated baseline dynamics and policy comparison](results/dynamics_and_design.png)
+![Baseline trajectory and mean policy errors on the full and late time windows](results/dynamics_and_design.png)
 
 **Figure 2. Simulated dynamics and the matched-model policy comparison.** Sources: [baseline trajectory](results/baseline_trajectory.csv) and [trial summaries](results/summary.csv). Error bars are descriptive standard errors across computational seeds, not independent biological replicates. The [full report](results/report.md) defines the evaluation scope.
 
 Both outputs are fractions of their kinase-layer totals. All policies share the
 same first two observations and, within a seed, the same candidate-indexed noise.
-Budget zero is the uniform prior: equal weights before any observations. The RMSE covers 81 times, including queried
-points and an unqueried late interval; it is not a purely held-out error estimate.
+Budget zero is the uniform prior: equal weights before any observations. Full curve RMSE covers both readouts at 81 times, including points that policies can query. Late-window RMSE uses the eight unqueryable times from 3650 through 4000. Both columns average per-seed RMSE.
 See the [paired-seed plot](results/paired_final_rmse.png) and [full trials](results/trials.csv).
 
 The separate [COPASI comparison](docs/copasi-comparison.md) checks the same baseline model through another importer and integration engine. All 648 concentration comparisons passed the declared 0.002 nM absolute criterion; the maximum difference was about 0.00005 nM. This is numerical agreement, not additional biological evidence.

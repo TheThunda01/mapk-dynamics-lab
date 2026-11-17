@@ -2,12 +2,19 @@ import inspect
 import unittest
 import numpy as np
 
-from mapk_lab.experiment import choose_candidate, fixed_order, normalize_log_weights, run_policy, update_weights
+from mapk_lab.experiment import choose_candidate, fixed_order, normalize_log_weights, run_policy, truth_metrics, update_weights
 
 
 class DesignTests(unittest.TestCase):
     def setUp(self):
         self.predictions = np.random.default_rng(3).normal(0, .2, (5, 18))
+
+    def test_late_error_only_counts_marked_readouts(self):
+        evaluation = np.array([[6., 6., 3., 4.]])
+        errors = truth_metrics(np.ones(1), np.ones(2), np.ones((1, 2)), evaluation,
+                               np.zeros(4), np.array([False, False, True, True]))
+        self.assertAlmostEqual(errors["prediction_rmse"], np.sqrt(97 / 4))
+        self.assertAlmostEqual(errors["late_window_rmse"], np.sqrt(25 / 2))
 
     def test_uniform_prior_and_known_gaussian_update(self):
         np.testing.assert_allclose(normalize_log_weights(np.zeros(2)), [.5, .5])

@@ -7,8 +7,8 @@
     "off_grid_rows": 6
   },
   "source_sha256": {
-    "results/trials.csv": "36a5489f6150e5cb51df3bd6fee2780d1643ff25eb51abee28d721b480fbaeb4",
-    "results/stress_trials.csv": "b21600b0a429014dc4b79feecbe174d0ba6d79a5846dc95feb1c8951a66ee17d"
+    "results/trials.csv": "0d006c8f94ce119c5c2f0b5c52027f70d39da2e2cb94cd3a376c3913d63de3af",
+    "results/stress_trials.csv": "527b0e1f404720d9a4aaf3e938a354ba3fecf697d2f05984c121f1aa1a391ece"
   },
   "output_sha256": {
     "virtual-loop.svg": "ba48bdeccc6e4fd2ebf586243792e98a2e6665bd3aca219d30f181470edcd39f",
